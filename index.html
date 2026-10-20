@@ -81,10 +81,27 @@
     <!-- =================================================================== -->
     <div id="view-cousins">
       <!-- Quick Summary Banner -->
-      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5 mb-4 flex items-start gap-3">
-        <div class="text-2xl shrink-0 mt-0.5">📜</div>
-        <div class="text-xs sm:text-sm text-amber-950 leading-relaxed">
-          <strong>Tap any cousin below</strong> to see the step-by-step family tree starting at your <strong>Shared Common Ancestor</strong>, branching into <strong>Step 1 (Brother &amp; Sister)</strong>, <strong>Step 2 (1st Cousins)</strong>, and tracing all the way down to <strong><span class="banner-viewer-name">Paula Hitchcock Meyer</span></strong>!
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5 mb-4 space-y-2.5">
+        <div class="flex items-start gap-3">
+          <div class="text-2xl shrink-0 mt-0.5">📜</div>
+          <div class="text-xs sm:text-sm text-amber-950 leading-relaxed">
+            <strong>Tap any cousin below</strong> to see the step-by-step family tree starting at your <strong>Shared Common Ancestor</strong>, branching into <strong>Step 1 (Brother &amp; Sister)</strong>, <strong>Step 2 (1st Cousins)</strong>, and tracing all the way down to <strong><span class="banner-viewer-name">Paula Hitchcock Meyer</span></strong> and her brothers &amp; sisters!
+          </div>
+        </div>
+        <div class="pt-2 border-t border-amber-200/80 flex flex-wrap items-center gap-1.5 text-xs">
+          <span class="font-bold text-amber-900 mr-1">👨‍👩‍👧‍👦 Hitchcock Siblings (Children of Paul Hitchcock):</span>
+          <span class="px-2 py-0.5 rounded-md bg-amber-600 text-white font-bold">⭐ Paula</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Debbie</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Danny</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Pamla</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Barbara</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Brendan</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Lonnie</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Lanny</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Karen</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Billy</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Cindy</span>
+          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">James</span>
         </div>
       </div>
 
@@ -268,9 +285,20 @@
   </div>
 
   <script>
+    const HITCHCOCK_SIBLINGS = [
+      "Paula", "Debbie", "Danny", "Pamla", "Barbara", "Brendan",
+      "Lonnie", "Lanny", "Karen", "Billy", "Cindy", "James"
+    ];
+
     const MODERN_TAIL = {
       paula: [
-        { name: "Paula Hitchcock", spouse: "m. Meyer", dates: "Gen 15", place: "Western New York", highlight: true }
+        {
+          name: "Paula Hitchcock Meyer",
+          spouse: "Siblings: Debbie, Danny, Pamla, Barbara, Brendan, Lonnie, Lanny, Karen, Billy, Cindy & James",
+          dates: "Gen 15",
+          place: "Western New York",
+          highlight: true
+        }
       ],
       clint: [
         { name: "Paula Hitchcock", spouse: "m. Meyer", dates: "Gen 15", place: "Western New York" },
@@ -331,22 +359,23 @@
     const DIRECT_TRUNK_FROM_PAULA = [
       {
         stepsUp: 0,
-        couple: "Paula Hitchcock Meyer",
-        spouse: "m. Meyer",
+        couple: "Paula Hitchcock Meyer & the Hitchcock Siblings",
+        spouse: "Paula (m. Meyer) • Debbie • Danny • Pamla • Barbara • Brendan • Lonnie • Lanny • Karen • Billy • Cindy • James",
         dates: "Generation 15",
         location: "Olean / Western New York",
-        badge: "Hitchcock • Meyer",
-        story: "Daughter of Paul Hitchcock; carries the combined bloodlines of the 1629 Lynn Ingalls pioneers, the 1620 Mayflower Billingtons, and New England's presidential families.",
+        badge: "Hitchcock • Meyer (12 Siblings)",
+        siblingsList: HITCHCOCK_SIBLINGS,
+        story: "Children of Paul Hitchcock; all 12 brothers and sisters share these exact same generational cousin connections and carry the combined bloodlines of the 1629 Lynn Ingalls pioneers, the 1620 Mayflower Billingtons, and New England's presidential families.",
         cousinLinks: []
       },
       {
         stepsUp: 1,
         couple: "Paul Hitchcock",
-        spouse: "",
+        spouse: "Father of Paula, Debbie, Danny, Pamla, Barbara, Brendan, Lonnie, Lanny, Karen, Billy, Cindy & James",
         dates: "Generation 14 • 20th Century",
         location: "Olean, Cattaraugus County, NY",
         badge: "Hitchcock Line",
-        story: "Son of Lionel P. Hitchcock; raised the family in Olean, Cattaraugus County, New York.",
+        story: "Son of Lionel P. Hitchcock; raised the Hitchcock brothers and sisters in Olean, Cattaraugus County, New York.",
         cousinLinks: []
       },
       {
@@ -1496,6 +1525,21 @@
               ${node.couple}
             </h3>
             ${node.spouse ? `<div class="text-xs font-medium ${node.isGateway ? 'text-amber-200' : 'text-slate-600'} mt-0.5">${node.spouse}</div>` : ''}
+
+            ${node.siblingsList ? `
+              <div class="mt-2.5 bg-white/90 border border-amber-300 rounded-xl p-2.5">
+                <div class="text-xs font-bold uppercase tracking-wider text-amber-900 mb-1.5">
+                  👨‍👩‍👧‍👦 Generation 15 • Brothers &amp; Sisters (${node.siblingsList.length}):
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                  ${node.siblingsList.map(sib => `
+                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${sib === 'Paula' ? 'bg-amber-600 text-white shadow-xs' : 'bg-amber-50 text-slate-800 border border-amber-200'}">
+                      ${sib === 'Paula' ? '⭐ Paula' : sib}
+                    </span>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
 
             <p class="mt-2 text-xs sm:text-sm ${node.isGateway ? 'text-slate-200 bg-slate-950/40 border-slate-700' : 'text-slate-700 bg-slate-50 border-slate-100'} p-2.5 rounded-xl border leading-relaxed">
               ${node.story}
