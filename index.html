@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Hitchcock • Meyer • Ingalls • Billington — Family Genealogy &amp; Famous Cousins</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #faf7f2;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .card-shadow {
+      box-shadow: 0 4px 20px -2px rgba(30, 41, 59, 0.08), 0 2px 6px -1px rgba(30, 41, 59, 0.04);
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    }
+    .accent-pill-active {
+      background-color: #b45309;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(180, 83, 9, 0.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16">
+
+  <!-- Top Hero Header -->
+  <header class="gold-gradient text-white pt-5 pb-4 px-4 sticky top-0 z-30 shadow-lg border-b border-amber-500/30">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center justify-between gap-2">
+        <div>
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-500/15 border border-amber-400/30 px-2.5 py-0.5 rounded-full mb-1">
+            500 Years • Verified Genealogy
+          </span>
+          <h1 class="font-serif-title text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+            Family Heritage Explorer
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-300 mt-0.5">
+            Hitchcock • Meyer • Dye • Ingalls • Carpenter • Billington
+          </p>
+        </div>
+        <button onclick="openHubModal()" class="shrink-0 bg-slate-800 hover:bg-slate-700 border border-amber-400/40 active:scale-95 transition text-amber-300 font-bold text-xs px-3 py-2 rounded-xl shadow flex items-center gap-1.5">
+          <span>⚓</span>
+          <span>Guide</span>
+        </button>
+      </div>
+
+      <!-- Primary Mode Switcher: Famous Cousins vs. Mom's Known Genealogy -->
+      <div class="mt-3 grid grid-cols-2 gap-1.5 bg-slate-950/80 p-1.5 rounded-2xl border border-amber-500/30">
+        <button onclick="setMainTab('cousins')" id="tab-btn-cousins" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5 bg-amber-500 text-slate-950 shadow">
+          <span>⭐</span>
+          <span>Famous Cousins (13)</span>
+        </button>
+        <button onclick="setMainTab('genealogy')" id="tab-btn-genealogy" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5 text-amber-200 hover:text-white">
+          <span>🌳</span>
+          <span>Known Genealogy</span>
+        </button>
+      </div>
+
+      <!-- "Viewing As" Perspective Switcher -->
+      <div class="mt-2.5 bg-slate-800/90 p-1.5 rounded-xl border border-slate-700">
+        <div class="text-xs text-amber-300 font-semibold px-2 mb-1 flex items-center justify-between">
+          <span>👑 Viewing Relationships For:</span>
+          <span id="viewer-gen-badge" class="text-slate-300 font-normal">Gen 15 from 1520 England</span>
+        </div>
+        <div class="grid grid-cols-3 gap-1">
+          <button onclick="setViewer('paula')" id="btn-viewer-paula" class="viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center bg-amber-500 text-slate-950 shadow">
+            Paula (Mom)
+          </button>
+          <button onclick="setViewer('clint')" id="btn-viewer-clint" class="viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center text-slate-300 hover:text-white">
+            Clint &amp; Megan
+          </button>
+          <button onclick="setViewer('girls')" id="btn-viewer-girls" class="viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center text-slate-300 hover:text-white">
+            The 3 Girls
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-2xl mx-auto px-3.5 pt-4">
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: FAMOUS COUSINS VIEW                                          -->
+    <!-- =================================================================== -->
+    <div id="view-cousins">
+      <!-- Quick Summary Banner -->
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5 mb-4 flex items-start gap-3">
+        <div class="text-2xl shrink-0 mt-0.5">📜</div>
+        <div class="text-xs sm:text-sm text-amber-950 leading-relaxed">
+          <strong>Tap any cousin below</strong> to see the step-by-step family tree starting at your <strong>Shared Common Ancestor</strong>, branching into <strong>Step 1 (Brother &amp; Sister)</strong>, <strong>Step 2 (1st Cousins)</strong>, and tracing all the way down to <strong><span class="banner-viewer-name">Paula Hitchcock Meyer</span></strong>!
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-3" id="category-bar">
+        <button onclick="setCategory('all')" data-cat="all" class="cat-pill accent-pill-active shrink-0 px-3.5 py-2 rounded-full text-xs font-bold transition border border-amber-700/20">
+          ✨ All Famous Kin (13)
+        </button>
+        <button onclick="setCategory('mayflower')" data-cat="mayflower" class="cat-pill bg-white text-slate-700 shrink-0 px-3.5 py-2 rounded-full text-xs font-bold transition border border-slate-200">
+          ⛵ John Billington / Mayflower (5)
+        </button>
+        <button onclick="setCategory('president')" data-cat="president" class="cat-pill bg-white text-slate-700 shrink-0 px-3.5 py-2 rounded-full text-xs font-bold transition border border-slate-200">
+          🏛️ 8 U.S. Presidents
+        </button>
+        <button onclick="setCategory('ingalls')" data-cat="ingalls" class="cat-pill bg-white text-slate-700 shrink-0 px-3.5 py-2 rounded-full text-xs font-bold transition border border-slate-200">
+          🏡 Direct Ingalls Bloodline (4)
+        </button>
+        <button onclick="setCategory('pop')" data-cat="pop" class="cat-pill bg-white text-slate-700 shrink-0 px-3.5 py-2 rounded-full text-xs font-bold transition border border-slate-200">
+          🎸 Music &amp; Hollywood (3)
+        </button>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative mb-4">
+        <input
+          type="text"
+          id="search-input"
+          oninput="renderCards()"
+          placeholder="Search Taylor Swift, Lincoln, Garfield, Wilder, Carrier..."
+          class="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-600"
+        />
+        <span class="absolute left-3 top-2.5 text-slate-400 text-sm">🔍</span>
+      </div>
+
+      <!-- Cousin Cards Grid -->
+      <div id="cards-container" class="space-y-3"></div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: KNOWN GENEALOGY (MOM TO THE TOP!)                            -->
+    <!-- =================================================================== -->
+    <div id="view-genealogy" class="hidden space-y-4">
+
+      <!-- Intro & Controls Card -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-4 card-shadow space-y-3">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <span class="inline-block text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-md mb-1">
+              Verified Direct Bloodline
+            </span>
+            <h2 class="font-serif-title text-xl font-bold text-slate-900">
+              Known Genealogy: <span class="banner-viewer-name">Paula Hitchcock Meyer</span>
+            </h2>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Every documented parent-to-child generation from Western New York back to Colonial New England, the 1620 <em>Mayflower</em>, and 1520 Tudor England.
+            </p>
+          </div>
+        </div>
+
+        <!-- Direction Toggle: From Mom Up to Top vs. From 1520 Down to Mom -->
+        <div class="bg-slate-100 p-1 rounded-xl grid grid-cols-2 gap-1">
+          <button onclick="setTreeDirection('bottom-up')" id="btn-dir-up" class="py-2 px-2.5 rounded-lg text-xs font-bold transition bg-slate-900 text-white shadow-xs">
+            ⬆️ Start at Mom → Climb to 1520
+          </button>
+          <button onclick="setTreeDirection('top-down')" id="btn-dir-down" class="py-2 px-2.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+            ⬇️ Start at 1520 → Down to Today
+          </button>
+        </div>
+
+        <!-- Ancestral Line Selector (For Early Colonial Branches above 1761) -->
+        <div>
+          <div class="text-xs font-bold text-slate-700 mb-1.5">
+            🧭 Select Colonial Ancestral Branch (Above 1761):
+          </div>
+          <div class="flex gap-1.5 overflow-x-auto no-scrollbar pb-1" id="branch-bar">
+            <button onclick="setGenealogyBranch('all')" data-branch="all" class="branch-pill accent-pill-active shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-amber-700/20">
+              🌟 Main Ingalls + Mayflower Spine
+            </button>
+            <button onclick="setGenealogyBranch('ingalls')" data-branch="ingalls" class="branch-pill bg-slate-100 text-slate-700 shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-slate-200">
+              🏰 Ingalls Line (to 1520 England)
+            </button>
+            <button onclick="setGenealogyBranch('mayflower')" data-branch="mayflower" class="branch-pill bg-slate-100 text-slate-700 shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-slate-200">
+              ⛵ Mayflower Billington &amp; Carpenter Line
+            </button>
+            <button onclick="setGenealogyBranch('wheeler')" data-branch="wheeler" class="branch-pill bg-slate-100 text-slate-700 shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-slate-200">
+              🦅 Wheeler Line (Bush &amp; Arthur Root)
+            </button>
+            <button onclick="setGenealogyBranch('holbrook')" data-branch="holbrook" class="branch-pill bg-slate-100 text-slate-700 shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-slate-200">
+              🎩 Whitman &amp; Holbrook Line (Lincoln &amp; Taft Root)
+            </button>
+            <button onclick="setGenealogyBranch('clapp')" data-branch="clapp" class="branch-pill bg-slate-100 text-slate-700 shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-slate-200">
+              🎙️ Weeks &amp; Clapp Line (FDR Root)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direct Genealogy Timeline Container -->
+      <div id="genealogy-container" class="space-y-2.5"></div>
+
+    </div>
+
+  </main>
+
+  <!-- Full-Screen Mobile Drawer / Modal for Lineage Comparison -->
+  <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-xs flex flex-col justify-end sm:justify-center sm:p-4">
+    <div class="bg-[#faf7f2] w-full max-w-2xl mx-auto rounded-t-3xl sm:rounded-3xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border-t border-amber-500/40">
+      
+      <!-- Modal Sticky Header -->
+      <div class="gold-gradient text-white px-4 py-3.5 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span id="modal-emoji" class="text-2xl shrink-0">⭐</span>
+          <div class="truncate">
+            <h2 id="modal-title" class="font-serif-title text-lg sm:text-xl font-bold truncate">Famous Cousin</h2>
+            <p id="modal-subtitle" class="text-xs text-amber-300 font-medium truncate">Relationship</p>
+          </div>
+        </div>
+        <button onclick="closeDetailModal()" class="bg-slate-800 hover:bg-slate-700 text-white rounded-full w-9 h-9 flex items-center justify-center text-lg font-bold shrink-0 border border-slate-600">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Scrollable Body -->
+      <div class="p-3.5 sm:p-4 overflow-y-auto space-y-4 flex-1" id="modal-body">
+        <!-- Populated dynamically by JS -->
+      </div>
+
+      <!-- Modal Bottom Bar -->
+      <div class="bg-white border-t border-slate-200 px-4 py-3 flex items-center justify-between shrink-0">
+        <div class="text-xs text-slate-500">
+          Every step is a direct parent → child link
+        </div>
+        <button onclick="closeDetailModal()" class="bg-slate-900 text-white font-bold text-xs px-5 py-2 rounded-xl">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- "How It Works" Overview Modal -->
+  <div id="hub-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-xs flex flex-col justify-end sm:justify-center sm:p-4">
+    <div class="bg-[#faf7f2] w-full max-w-2xl mx-auto rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+      <div class="gold-gradient text-white px-4 py-3.5 flex items-center justify-between shrink-0">
+        <div>
+          <h2 class="font-serif-title text-lg sm:text-xl font-bold">⚓ How Cousin Trees Work</h2>
+          <p class="text-xs text-amber-300">Reading the Side-by-Side Family Ladder</p>
+        </div>
+        <button onclick="closeHubModal()" class="bg-slate-800 hover:bg-slate-700 text-white rounded-full w-9 h-9 flex items-center justify-center text-lg font-bold">
+          ✕
+        </button>
+      </div>
+      <div class="p-4 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed">
+        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-amber-800 mb-1">How to Read Each Step</div>
+          <ul class="space-y-2 text-xs sm:text-sm text-amber-950">
+            <li><strong>⚓ Shared Common Ancestor (Top Box):</strong> The exact grandparent couple that BOTH your family and the famous person descend from.</li>
+            <li><strong>👥 Step 1 (Children / Siblings):</strong> The two people directly below the Shared Ancestor are <strong>Brothers &amp; Sisters</strong> (children of the Shared Ancestor). Your family descends from the sibling on the left; the famous cousin descends from the sibling on the right!</li>
+            <li><strong>🤝 Step 2 (Grandchildren / 1st Cousins):</strong> The children of those siblings—making them <strong>1st Cousins</strong> to each other!</li>
+            <li><strong>🤝 Step 3 (2nd Cousins), Step 4 (3rd Cousins)...:</strong> Each step down adds one cousin degree.</li>
+            <li><strong>⏳ "Removed" Steps at the Bottom:</strong> When one branch reaches the Famous Person earlier in history (like Abraham Lincoln at Step 8) while your branch continues down to the present day, those extra generations at the bottom are the <strong>"Times Removed"</strong>!</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 card-shadow">
+          <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">Gateway Marriage • Dec 31, 1761</div>
+          <h3 class="font-serif-title text-lg font-bold text-slate-900 mb-1.5">Lt. Henry Ingalls &amp; Sybil Carpenter</h3>
+          <p class="text-xs sm:text-sm text-slate-600">
+            On New Year's Eve 1761 in Rehoboth, Massachusetts, Revolutionary War Patriot <strong>Lt. Henry Ingalls</strong> (1738–1813) married <strong>Sybil Carpenter</strong> (1740–1833).
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2">
+            Proven by presidential genealogist Gary Boyd Roberts and the Rehoboth vital records, Sybil was the 2x great-granddaughter of <em>Mayflower</em> teenager <strong>Francis Billington</strong> and 3x great-granddaughter of <strong>John &amp; Elinor Billington</strong>—while Henry descended from 1629 Lynn founder <strong>Edmund Ingalls</strong>.
+          </p>
+        </div>
+      </div>
+      <div class="bg-white border-t border-slate-200 px-4 py-3 text-right shrink-0">
+        <button onclick="closeHubModal()" class="bg-slate-900 text-white font-bold text-xs px-4 py-2 rounded-xl">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MODERN_TAIL = {
+      paula: [
+        { name: "Paula Hitchcock", spouse: "m. Meyer", dates: "Gen 15", place: "Western New York", highlight: true }
+      ],
+      clint: [
+        { name: "Paula Hitchcock", spouse: "m. Meyer", dates: "Gen 15", place: "Western New York" },
+        { name: "Clint Meyer & Sister Megan", spouse: "", dates: "Gen 16", place: "New York", highlight: true }
+      ],
+      girls: [
+        { name: "Paula Hitchcock", spouse: "m. Meyer", dates: "Gen 15", place: "Western New York" },
+        { name: "Megan (and Uncle Clint Meyer)", spouse: "", dates: "Gen 16", place: "New York" },
+        { name: "Adeline, Caroline & Emmeline", spouse: "", dates: "Gen 17", place: "New York", highlight: true }
+      ]
+    };
+
+    const POST_1761_LINE = [
+      { name: "Deacon Rufus Ingalls", spouse: "m. Lydia Cole (1791)", dates: "1769–1855", place: "Richmond, NH → Otsego Co., NY" },
+      { name: "Betsey Ingalls", spouse: "m. William Dye", dates: "1794–1868", place: "Otsego Co. → Western NY" },
+      { name: "Dr. Henry William Dye", spouse: "Early Cattaraugus Physician", dates: "1815–1889", place: "Salamanca, Cattaraugus Co., NY" },
+      { name: "Ann M. Dye", spouse: "m. Freeman Hitchcock (d. Jan 1, 1898)", dates: "b. Dec 31, 1840", place: "Humphrey, Cattaraugus Co., NY" },
+      { name: "Marion Henry Hitchcock", spouse: "m. Martha Cooney (b. Dec 23, 1876)", dates: "b. Dec 25, 1876", place: "Humphrey, NY" },
+      { name: "Lionel P. Hitchcock", spouse: "Dairy & Tractor Pioneer", dates: "20th Century", place: "Ford Hollow (Five Mile), Allegany, NY" },
+      { name: "Ralph Henry Hitchcock", spouse: "", dates: "20th Century", place: "Olean, NY" }
+    ];
+
+    let currentMainTab = 'cousins'; // 'cousins' or 'genealogy'
+    let currentViewer = 'paula';
+    let currentCategory = 'all';
+    let currentViewMode = 'side-by-side';
+    let currentTreeDirection = 'bottom-up'; // 'bottom-up' (Mom to Top) or 'top-down' (1520 to Today)
+    let currentGenealogyBranch = 'all'; // 'all', 'ingalls', 'mayflower', 'wheeler', 'holbrook', 'clapp'
+    let activeRelativeId = null;
+
+    const VIEWER_LABELS = {
+      paula: { name: "Paula Hitchcock Meyer", short: "Paula (Mom)", genBadge: "Gen 15 (from 1520 Tudor England)", offset: 0 },
+      clint: { name: "Clint Meyer & Megan", short: "Clint & Megan", genBadge: "Gen 16 (from 1520 Tudor England)", offset: 1 },
+      girls: { name: "Adeline, Caroline & Emmeline", short: "The 3 Girls", genBadge: "Gen 17 (from 1520 Tudor England)", offset: 2 }
+    };
+
+    function ordinal(n) {
+      const s = ["th", "st", "nd", "rd"];
+      const v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
+    // Given stepsUpFromPaula (0 = Paula, 1 = Parents, 2 = Grandparents, 3 = Great-Grandparents, 4 = 2x Great-Grandparents...),
+    // compute the exact title relative to the currently selected viewer!
+    function getAncestorTitleForViewer(stepsUpFromPaula) {
+      const offset = VIEWER_LABELS[currentViewer].offset;
+      const totalStepsUp = stepsUpFromPaula + offset;
+      if (totalStepsUp === 0) return "⭐ YOU (Starting Point)";
+      if (totalStepsUp === 1) return "Parents (1 Gen Up)";
+      if (totalStepsUp === 2) return "Grandparents (2 Gens Up)";
+      if (totalStepsUp === 3) return "Great-Grandparents (3 Gens Up)";
+      const gg = totalStepsUp - 2;
+      return `${ordinal(gg)} Great-Grandparents (${totalStepsUp} Gens Up)`;
+    }
+
+    // =========================================================================
+    // MOM'S KNOWN DIRECT GENEALOGY DATA (Structured by stepsUpFromPaula)
+    // =========================================================================
+    // stepsUpFromPaula = 0 is Paula Hitchcock Meyer; 12 is Henry Ingalls (1520) / William Clapp / Richard Whitman
+    const DIRECT_TRUNK_FROM_PAULA = [
+      {
+        stepsUp: 0,
+        couple: "Paula Hitchcock Meyer",
+        spouse: "m. Meyer",
+        dates: "Generation 15",
+        location: "Olean / Western New York",
+        badge: "Hitchcock • Meyer",
+        story: "Daughter of Ralph Henry Hitchcock; carries the combined bloodlines of the 1629 Lynn Ingalls pioneers, the 1620 Mayflower Billingtons, and New England's presidential families.",
+        cousinLinks: []
+      },
+      {
+        stepsUp: 1,
+        couple: "Ralph Henry Hitchcock",
+        spouse: "",
+        dates: "Generation 14 • 20th Century",
+        location: "Olean, Cattaraugus County, NY",
+        badge: "Hitchcock Line",
+        story: "Son of Lionel P. Hitchcock; raised the family in Olean, Cattaraugus County, New York.",
+        cousinLinks: []
+      },
+      {
+        stepsUp: 2,
+        couple: "Lionel P. Hitchcock",
+        spouse: "",
+        dates: "Generation 13 • 20th Century",
+        location: "Ford Hollow (Five Mile), Allegany, NY",
+        badge: "Hitchcock Line",
+        story: "Farmed at Ford Hollow on the Five Mile in Allegany, NY. He was a straight 7th cousin (same generation!) to 41st U.S. President George H.W. Bush.",
+        cousinLinks: [{ id: "george-hw-bush", label: "7th Cousin to Pres. George H.W. Bush" }]
+      },
+      {
+        stepsUp: 3,
+        couple: "Marion Henry Hitchcock & Martha Cooney",
+        spouse: "m. Martha Cooney (b. Dec 23, 1876)",
+        dates: "Generation 12 • Born Christmas Day, Dec 25, 1876",
+        location: "Humphrey, Cattaraugus County, NY",
+        badge: "Hitchcock • Cooney",
+        story: "Born in Humphrey, NY on Christmas Day, Dec 25, 1876—just two days after his future wife Martha Cooney was born on Dec 23, 1876! Same birth year (1876) as cousin Willis Carrier in nearby Angola, NY.",
+        cousinLinks: []
+      },
+      {
+        stepsUp: 4,
+        couple: "Ann M. Dye & Freeman Hitchcock",
+        spouse: "Freeman Hitchcock passed away on New Year's Day, Jan 1, 1898",
+        dates: "Generation 11 • Born New Year's Eve, Dec 31, 1840",
+        location: "Humphrey, Cattaraugus County, NY",
+        badge: "Dye • Hitchcock",
+        story: "Born on New Year's Eve 1840! When James A. Garfield was elected 20th President of the United States in 1880, Ann M. (Dye) Hitchcock was living in Cattaraugus County as the sitting President's living 2nd cousin once removed!",
+        cousinLinks: []
+      },
+      {
+        stepsUp: 5,
+        couple: "Dr. Henry William Dye",
+        spouse: "Early Cattaraugus County Physician",
+        dates: "Generation 10 • 1815–1889",
+        location: "Salamanca, Cattaraugus County, NY (Crawford Cemetery)",
+        badge: "Dye Line",
+        story: "Pioneering early physician in Cattaraugus County, NY; rests today at Crawford Cemetery in Salamanca. He was a direct 2nd cousin (same generation) to President James A. Garfield!",
+        cousinLinks: [{ id: "james-garfield", label: "2nd Cousin to Pres. James A. Garfield" }]
+      },
+      {
+        stepsUp: 6,
+        couple: "Betsey Ingalls & William Dye",
+        spouse: "m. William Dye",
+        dates: "Generation 9 • 1794–1868",
+        location: "Otsego County → Cattaraugus County, NY",
+        badge: "Ingalls • Dye",
+        story: "Daughter of pioneer Deacon Rufus Ingalls; brought the Ingalls and Mayflower Billington bloodline into Western New York.",
+        cousinLinks: []
+      },
+      {
+        stepsUp: 7,
+        couple: "Deacon Rufus Ingalls & Lydia Cole",
+        spouse: "m. Lydia Cole (1791 in Richmond, NH, officiated by his father Lt. Henry!)",
+        dates: "Generation 8 • 1769–1855 (Lived to 86!)",
+        location: "Richmond, NH → Otsego County, NY",
+        badge: "Ingalls • Cole",
+        story: "In the 1790s, Deacon Rufus loaded heavy wooden ox-carts and pioneered out of New England into the virgin forests of Otsego County, New York. His older sister Mehitable Ingalls was President James A. Garfield's grandmother!",
+        cousinLinks: [{ id: "james-garfield", label: "Uncle of Pres. Garfield's Mother" }]
+      },
+      {
+        stepsUp: 8,
+        couple: "Lt. Henry Ingalls & Sybil Carpenter",
+        spouse: "Married on New Year's Eve, Dec 31, 1761 in Rehoboth, MA",
+        dates: "Generation 7 • Henry (1738–1813) & Sybil (1740–1833, lived to 94!)",
+        location: "Rehoboth, MA → Richmond, NH → Otsego County, NY",
+        badge: "⚓ THE GREAT GATEWAY MARRIAGE",
+        isGateway: true,
+        story: "The most important junction in your family tree! Lt. Henry Ingalls was the first Town Clerk of Richmond, NH and a DAR Revolutionary War Patriot who marched to Fort Ticonderoga in 1777. His wife Sybil Carpenter raised 11 children during the Revolution, pioneered into NY by ox-cart in her 50s, and lived to age 94. Their marriage united the 1629 Edmund Ingalls line (Henry) with the 1620 Mayflower John Billington line (Sybil)—and they are the direct great-grandparents of President James A. Garfield!",
+        cousinLinks: [
+          { id: "james-garfield", label: "Great-Grandparents of Pres. Garfield" },
+          { id: "roger-chaffee", label: "Sybil's Brother → Astronaut Roger Chaffee" }
+        ]
+      }
+    ];
+
+    // Branches above Generation 7 (Steps Up 9 to 14 from Paula)
+    const UPPER_BRANCHES = {
+      all: [
+        {
+          stepsUp: 9,
+          couple: "Ebenezer Ingalls Sr. & Elizabeth Wheeler (Ingalls Side) + Deacon Jotham Carpenter Jr. & Mehitable Thompson (Mayflower Side)",
+          spouse: "Both couples married in Rehoboth, Massachusetts (1735 & 1728)",
+          dates: "Generation 6 • Early 1700s",
+          location: "Rehoboth, Bristol County, Massachusetts",
+          badge: "Ingalls • Wheeler • Carpenter • Thompson",
+          story: "Lt. Henry Ingalls's parents were Ebenezer Ingalls Sr. (1711–1771) & Elizabeth Wheeler (b. 1717—whose brother Jeremiah Wheeler is the ancestor of Presidents George H.W. & George W. Bush!). Sybil Carpenter's parents were Deacon Jotham Carpenter Jr. (1708–1777) & Mehitable Thompson (1701–1747), proven by Gary Boyd Roberts via the Rehoboth vital records.",
+          cousinLinks: [
+            { id: "george-hw-bush", label: "Wheeler Branch → Pres. George H.W. & W. Bush" },
+            { id: "roger-chaffee", label: "Carpenter Branch → Astronaut Roger Chaffee" }
+          ]
+        },
+        {
+          stepsUp: 10,
+          couple: "Edmund Ingalls Sr. & Eunice Ludden (Ingalls Side) + Jotham Carpenter Sr. & Desire Martin (Mayflower Side)",
+          spouse: "Married in Rehoboth, Massachusetts (1705 & 1707)",
+          dates: "Generation 5 • 1679–1760",
+          location: "Rehoboth & Swansea, Massachusetts",
+          badge: "Ingalls • Ludden • Carpenter • Martin",
+          story: "Edmund Ingalls Sr. (1679–1749) married Eunice Ludden (1689–1749, who carries the Whitman & Holbrook lines of Lincoln, Taft, and Coolidge). On Sybil's side, Jotham Carpenter Sr. (1682–1760) married Desire Martin (1685–1727), granddaughter of Mayflower passenger Francis Billington!",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 11,
+          couple: "John Ingalls & Elizabeth Barrett (Ingalls Side) + John Martin & Mercy Billington (Mayflower Side)",
+          spouse: "Married in Massachusetts (1667 & 1681)",
+          dates: "Generation 4 • John Ingalls lived to age 97 (1624–1721)!",
+          location: "Lynn, Plymouth & Rehoboth, Massachusetts",
+          badge: "Ingalls • Barrett • Billington • Martin",
+          story: "John Ingalls crossed the Atlantic as a 4-year-old on the Abigail in 1628, married indentured maidservant Elizabeth Barrett in 1667 (four weeks after she testified as star witness in the Sunday Cider Party scandal!), joined the dissenting Six Principle Baptists in Rehoboth, and lived to 97! Meanwhile, Mercy Billington (1646–1718) was the sister of Taylor Swift's, Richard Gere's, and Brian Wilson's Billington ancestors!",
+          cousinLinks: [
+            { id: "taylor-swift", label: "Mercy's Sister Mary → Taylor Swift" },
+            { id: "richard-gere", label: "Mercy's Sister Martha → Richard Gere" },
+            { id: "brian-wilson", label: "Mercy's Brother Isaac → The Beach Boys" }
+          ]
+        },
+        {
+          stepsUp: 12,
+          couple: "Edmund Ingalls & Annis Telbe (1629 Lynn Founders) + Francis Billington & Christian Penn (1620 Mayflower)",
+          spouse: "Immigrant Ancestors to Massachusetts Bay & Plymouth Colony",
+          dates: "Generation 3 • Edmund (1586–1648) & Francis (1606–1684)",
+          location: "Lynn, MA (1629) & Plymouth Colony / Mayflower (1620)",
+          badge: "⛵ IMMIGRANT GENERATION (1620 & 1628)",
+          isGateway: true,
+          story: "Edmund Ingalls (1586–1648) sailed on the Abigail in 1628, co-founded Lynn, MA in 1629, built the town's first brewery/malthouse, was fined in 1646 for picking up sticks on Sunday, and drowned in 1648 when the Saugus River bridge collapsed. He is the common ancestor of Laura Ingalls Wilder, Martha Carrier, and Willis Carrier! On the Mayflower side, 14-year-old Francis Billington (1606–1684) nearly blew up the Mayflower in Dec 1620 shooting squibs beside an open gunpowder keg!",
+          cousinLinks: [
+            { id: "laura-ingalls-wilder", label: "Edmund's Son Henry → Laura Ingalls Wilder" },
+            { id: "willis-carrier", label: "Edmund's Daughter Faith → Willis Carrier" },
+            { id: "martha-carrier", label: "Edmund's Granddaughter → Martha Carrier" },
+            { id: "taylor-swift", label: "Francis Billington → Taylor Swift" }
+          ]
+        },
+        {
+          stepsUp: 13,
+          couple: "Robert Ingalls & Elizabeth (Lincolnshire) + John Billington Sr. & Elinor (1620 Mayflower)",
+          spouse: "Tudor England & Mayflower Compact Signer",
+          dates: "Generation 2 • Robert (c. 1550–1617) & John Billington Sr. (c. 1580–1630)",
+          location: "Skirbeck, Lincolnshire, England & Plymouth Colony, MA",
+          badge: "Tudor England & 1620 Mayflower Patriarch",
+          story: "Robert Ingalls lived in Skirbeck, Lincolnshire, England; his sons Edmund and Francis funded their own passage to America in 1628. Meanwhile, John Billington Sr. (c. 1580–1630) and his wife Elinor boarded the Mayflower in 1620, signed the Mayflower Compact, cursed out Capt. Myles Standish in 1621, and became the first Englishman executed in America in 1630.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 14,
+          couple: "Henry Ingalls & Johan (Root of the Tree in 1520 Tudor England!)",
+          spouse: "Last Will & Testament dated June 1, 1555 (Lincoln Cathedral Archives)",
+          dates: "Generation 1 (Root) • Born c. 1520 – Died 1555",
+          location: "Skirbeck, Lincolnshire, England",
+          badge: "👑 OLDEST DOCUMENTED ANCESTOR (1520)",
+          isGateway: true,
+          story: "Born around 1520 during the reign of King Henry VIII in the coastal parish of Skirbeck, Lincolnshire, England (where Viking settlers earlier brought the Norse name Ingall-Jald). His original will dated June 1, 1555 leaves 12 pence to the high altar of the church and still rests in the Lincoln Cathedral probate archives today!",
+          cousinLinks: []
+        }
+      ],
+
+      ingalls: [
+        {
+          stepsUp: 9,
+          couple: "Ebenezer Ingalls Sr. & Elizabeth Wheeler",
+          spouse: "Married June 5, 1735 in Rehoboth, MA",
+          dates: "Generation 6 • 1711–1771",
+          location: "Rehoboth, Bristol County, Massachusetts",
+          badge: "Direct Ingalls Line",
+          story: "Parents of Revolutionary War Patriot Lt. Henry Ingalls and 2x great-grandparents of President James A. Garfield.",
+          cousinLinks: [{ id: "george-hw-bush", label: "Elizabeth's Brother → Pres. George H.W. & W. Bush" }]
+        },
+        {
+          stepsUp: 10,
+          couple: "Edmund Ingalls Sr. & Eunice Ludden",
+          spouse: "Married Nov 29, 1705 in Rehoboth, MA",
+          dates: "Generation 5 • 1679–1749",
+          location: "Rehoboth, Bristol County, Massachusetts",
+          badge: "Direct Ingalls Line",
+          story: "Youngest son of 97-year-old John Ingalls and 1st cousin to Salem Witch Trials heroine Martha (Allen) Carrier.",
+          cousinLinks: [{ id: "martha-carrier", label: "1st Cousin to Martha Carrier" }]
+        },
+        {
+          stepsUp: 11,
+          couple: "John Ingalls & Elizabeth Barrett",
+          spouse: "Married May 26, 1667 in Lynn, MA",
+          dates: "Generation 4 • 1624–Dec 31, 1721 (Lived to 97!)",
+          location: "Skirbeck, England → Lynn, MA → Rehoboth, MA",
+          badge: "Direct Ingalls Line",
+          story: "Crossed the Atlantic at age 4 on the Abigail (1628). Married Elizabeth Barrett in 1667 just after the famous Sunday Cider Party trial. Lived to age 97! His brother Henry is the ancestor of Laura Ingalls Wilder, and his sister Faith is the ancestor of Martha Carrier & Willis Carrier.",
+          cousinLinks: [
+            { id: "laura-ingalls-wilder", label: "Brother Henry → Laura Ingalls Wilder" },
+            { id: "willis-carrier", label: "Sister Faith → Willis Carrier" }
+          ]
+        },
+        {
+          stepsUp: 12,
+          couple: "Edmund Ingalls & Annis Telbe",
+          spouse: "Married 1618 in Lincolnshire, England",
+          dates: "Generation 3 • Baptized June 26, 1586 – Died March 1648",
+          location: "Skirbeck, Lincolnshire → Founded Lynn, MA (1629)",
+          badge: "⛵ 1628 ABIGAIL IMMIGRANT & LYNN FOUNDER",
+          isGateway: true,
+          story: "Co-founded Saugus/Lynn, MA in 1629 and built the town's first malt house & brewery. Fined in 1646 for picking up sticks on the Sabbath. When he drowned in the Saugus River bridge collapse in March 1648, his son Robert won one of America's first public negligence lawsuits against the town of Lynn for 100 pounds!",
+          cousinLinks: [
+            { id: "laura-ingalls-wilder", label: "Ancestor of Laura Ingalls Wilder" },
+            { id: "willis-carrier", label: "Ancestor of Willis Carrier" },
+            { id: "martha-carrier", label: "Grandfather of Martha Carrier" }
+          ]
+        },
+        {
+          stepsUp: 13,
+          couple: "Robert Ingalls & Elizabeth",
+          spouse: "Will proved 1617 in Lincolnshire",
+          dates: "Generation 2 • c. 1550–1617",
+          location: "Skirbeck, Lincolnshire, England",
+          badge: "Tudor England",
+          story: "Father of Massachusetts Bay immigrants Edmund and Francis Ingalls.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 14,
+          couple: "Henry Ingalls & Johan",
+          spouse: "Will dated June 1, 1555 (Lincoln Cathedral)",
+          dates: "Generation 1 (Root) • c. 1520–1555",
+          location: "Skirbeck, Lincolnshire, England",
+          badge: "👑 OLDEST DOCUMENTED ANCESTOR (1520)",
+          isGateway: true,
+          story: "Patriarch of the Ingalls family during the reign of King Henry VIII.",
+          cousinLinks: []
+        }
+      ],
+
+      mayflower: [
+        {
+          stepsUp: 9,
+          couple: "Deacon Jotham Carpenter Jr. & Mehitable Thompson",
+          spouse: "Married May 11, 1728 in Rehoboth, MA",
+          dates: "Generation 6 • Jotham (1708–1777) & Mehitable (1701–1747)",
+          location: "Rehoboth, Bristol County, Massachusetts",
+          badge: "Carpenter • Thompson (Rehoboth Vital Records Proof)",
+          story: "Parents of Sybil Carpenter (b. Feb 26, 1740). Presidential genealogist Gary Boyd Roberts proved via original Rehoboth records that Sybil was their daughter—cementing your Mayflower descent and making Apollo 1 Astronaut Roger Chaffee your 6th cousin!",
+          cousinLinks: [{ id: "roger-chaffee", label: "Parents of Sybil & Brother Jotham III → Roger Chaffee" }]
+        },
+        {
+          stepsUp: 10,
+          couple: "Jotham Carpenter Sr. & Desire Martin",
+          spouse: "Married July 10, 1707 in Rehoboth, MA",
+          dates: "Generation 5 • Jotham (1682–1760) & Desire (1685–1727)",
+          location: "Swansea & Rehoboth, Massachusetts",
+          badge: "Carpenter • Martin",
+          story: "Sybil Carpenter named her own daughter 'Desire Ingalls' in honor of her grandmother Desire Martin—the direct granddaughter of Mayflower passenger Francis Billington!",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 11,
+          couple: "Mercy Billington & John Martin",
+          spouse: "Married June 27, 1681 in Rehoboth, MA",
+          dates: "Generation 4 • Mercy (1646–1718) & John (1652–1720)",
+          location: "Plymouth Colony → Rehoboth, Massachusetts",
+          badge: "Billington • Martin",
+          story: "Daughter of Mayflower passenger Francis Billington! Her sisters Mary and Martha and brother Isaac are the direct ancestors of Taylor Swift, Richard Gere, and Brian Wilson (The Beach Boys)!",
+          cousinLinks: [
+            { id: "taylor-swift", label: "Sister Mary → Taylor Swift" },
+            { id: "richard-gere", label: "Sister Martha → Richard Gere" },
+            { id: "brian-wilson", label: "Brother Isaac → The Beach Boys" }
+          ]
+        },
+        {
+          stepsUp: 12,
+          couple: "Francis Billington & Christian Penn",
+          spouse: "Married July 1634 in Plymouth Colony (Both Pilgrim Ships: Mayflower 1620 & Anne 1623)",
+          dates: "Generation 3 • Francis (c. 1606–1684) & Christian (c. 1607–1684)",
+          location: "England → Aboard the Mayflower (1620) → Middleborough, MA",
+          badge: "⛵ 1620 MAYFLOWER PASSENGER",
+          isGateway: true,
+          story: "In December 1620, 14-year-old Francis Billington nearly blew up the Mayflower in Cape Cod Harbor by firing squibs and a musket right beside an open half-barrel of gunpowder! He later discovered 'Billington Sea' in Plymouth and lived to age 78.",
+          cousinLinks: [
+            { id: "taylor-swift", label: "10th Great-Grandfather of Taylor Swift" },
+            { id: "james-garfield", label: "5th Great-Grandfather of Pres. Garfield" },
+            { id: "richard-gere", label: "9th Great-Grandfather of Richard Gere" },
+            { id: "brian-wilson", label: "9th Great-Grandfather of Brian Wilson" }
+          ]
+        },
+        {
+          stepsUp: 13,
+          couple: "John Billington Sr. & Elinor Billington",
+          spouse: "Boarded the Mayflower in 1620; Signed the Mayflower Compact",
+          dates: "Generation 2 • c. 1580–Sept 1630",
+          location: "England → Aboard the Mayflower (1620) → Plymouth Colony",
+          badge: "⛵ 1620 MAYFLOWER PATRIARCH & OUTLAW",
+          isGateway: true,
+          story: "Plymouth Colony's most notorious rebel! Refused Myles Standish's guard duty orders in 1621, and in 1630 sparked a colonial constitutional crisis when he ambushed rival John Newcomen with a blunderbuss—becoming the first Englishman executed in America.",
+          cousinLinks: [{ id: "taylor-swift", label: "11th Great-Grandfather of Taylor Swift" }]
+        }
+      ],
+
+      wheeler: [
+        {
+          stepsUp: 9,
+          couple: "Elizabeth Wheeler & Ebenezer Ingalls Sr.",
+          spouse: "Married June 5, 1735 in Rehoboth, MA",
+          dates: "Generation 6 • Elizabeth born June 9, 1717",
+          location: "Rehoboth, Massachusetts",
+          badge: "Wheeler • Ingalls",
+          story: "Elizabeth Wheeler's younger brother Jeremiah Wheeler (1731–1811) is the direct ancestor of Presidents George H.W. Bush (41st) and George W. Bush (43rd)!",
+          cousinLinks: [{ id: "george-hw-bush", label: "Brother Jeremiah → Pres. George H.W. & W. Bush" }]
+        },
+        {
+          stepsUp: 10,
+          couple: "James Wheeler Jr. & Elizabeth West",
+          spouse: "Married 1716 in Rehoboth, MA",
+          dates: "Generation 5 • 1697–1740",
+          location: "Rehoboth, Massachusetts",
+          badge: "Wheeler • West (Shared Ancestor with Both Bush Presidents!)",
+          isGateway: true,
+          story: "Parents of both your ancestor Elizabeth Wheeler Ingalls and her brother Jeremiah Wheeler (ancestor of Presidents George H.W. Bush and George W. Bush).",
+          cousinLinks: [{ id: "george-hw-bush", label: "6th Great-Grandparents of Pres. George H.W. Bush" }]
+        },
+        {
+          stepsUp: 11,
+          couple: "James Wheeler Sr. & Grizzel Squire",
+          spouse: "Married c. 1690",
+          dates: "Generation 4 • 1667–1753",
+          location: "Salisbury → Rehoboth, Massachusetts",
+          badge: "Wheeler • Squire",
+          story: "Moved the Wheeler family from Salisbury to Rehoboth, Massachusetts; Grizzel Squire also connects to the colonial Squire family of Edith Squire Adams.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 12,
+          couple: "Capt. Henry Wheeler & Abigail Allen",
+          spouse: "Married 1659 in Salisbury, MA",
+          dates: "Generation 3 • 1634–1696",
+          location: "Salisbury, England → Salisbury, Massachusetts",
+          badge: "Wheeler • Allen",
+          story: "Son of immigrant John Wheeler; his sister Anne Wheeler (m. Aquila Chase) is the direct ancestor of 21st President Chester A. Arthur!",
+          cousinLinks: [{ id: "chester-arthur", label: "Sister Anne → Pres. Chester A. Arthur" }]
+        },
+        {
+          stepsUp: 13,
+          couple: "John Wheeler & Agnes Yeoman",
+          spouse: "Married 1611 in Salisbury, Wiltshire, England",
+          dates: "Generation 2 • 1591–1670 (Sailed on the Mary & John, 1634)",
+          location: "Salisbury, England → Hampton, NH & Newbury, MA",
+          badge: "⛵ 1634 GREAT MIGRATION IMMIGRANT (Arthur, Garfield & Bush Ancestor!)",
+          isGateway: true,
+          story: "Foundational settler of Newbury, MA and Hampton, NH. Ancestor of three U.S. Presidents in your tree: James A. Garfield, Chester A. Arthur (meaning the entire 1880 Republican ticket descended from him!), and George H.W. & W. Bush!",
+          cousinLinks: [{ id: "chester-arthur", label: "5th Great-Grandfather of Pres. Chester A. Arthur" }]
+        }
+      ],
+
+      holbrook: [
+        {
+          stepsUp: 10,
+          couple: "Eunice Ludden & Edmund Ingalls Sr.",
+          spouse: "Married Nov 29, 1705 in Rehoboth, MA",
+          dates: "Generation 5 • Eunice (1689–1749)",
+          location: "Weymouth → Rehoboth, Massachusetts",
+          badge: "Ludden • Ingalls",
+          story: "Eunice Ludden brought the Weymouth Holbrook and Whitman bloodlines directly into your Ingalls tree.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 11,
+          couple: "Benjamin Ludden & Eunice Holbrook",
+          spouse: "Married c. 1678 in Weymouth, MA",
+          dates: "Generation 4 • Benjamin (1650–1690) & Eunice (1658–1699)",
+          location: "Weymouth, Massachusetts",
+          badge: "Ludden • Holbrook",
+          story: "Benjamin Ludden perished in the 1690 colonial expedition to Canada during King William's War, leaving his estate to his young children including daughter Eunice Ludden.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 12,
+          couple: "Capt. John Holbrook & Elizabeth Stream",
+          spouse: "Married c. 1645 in Weymouth, MA",
+          dates: "Generation 3 • Capt. John (1617–1699) & Elizabeth (1624–1688)",
+          location: "Weymouth, Massachusetts",
+          badge: "Holbrook • Stream",
+          story: "Prominent Weymouth military captain in King Philip's War and Deputy to the Massachusetts General Court. His brother Thomas Holbrook Jr. is the direct ancestor of 27th President William Howard Taft!",
+          cousinLinks: [{ id: "taft-coolidge", label: "Brother Thomas Jr. → Pres. William Howard Taft" }]
+        },
+        {
+          stepsUp: 13,
+          couple: "Thomas Holbrook & Jane Powyes (Holbrook) + Thomas Stream & Elizabeth Whitman (Whitman)",
+          spouse: "Foundational Settlers of Weymouth, Massachusetts",
+          dates: "Generation 2 • Thomas Holbrook (1589–1677) & Elizabeth Whitman (1600–1664)",
+          location: "England → Weymouth, Massachusetts (Arrived 1635)",
+          badge: "⛵ WEYMOUTH IMMIGRANTS (Lincoln, Taft & Coolidge Root!)",
+          isGateway: true,
+          story: "Thomas Holbrook sailed from Somerset, England on the Marygould in 1635 (common ancestor with William Howard Taft & Calvin Coolidge). Meanwhile, Elizabeth Whitman was the sister of Ensign John Whitman—whose daughter Sarah Whitman married Abraham Jones and brought the first name 'Abraham' into the family of 16th President Abraham Lincoln!",
+          cousinLinks: [
+            { id: "abraham-lincoln", label: "Brother Ensign John Whitman → Pres. Abraham Lincoln" },
+            { id: "taft-coolidge", label: "Thomas Holbrook → Pres. Taft & Coolidge" }
+          ]
+        },
+        {
+          stepsUp: 14,
+          couple: "Richard Whitman of Lee, Buckinghamshire, England",
+          spouse: "Father of Elizabeth Whitman (your line) & Ensign John Whitman (Lincoln's line)",
+          dates: "Generation 1 (Root) • c. 1570–1638",
+          location: "Lee, Buckinghamshire, England",
+          badge: "👑 SHARED ANCESTOR WITH ABRAHAM LINCOLN",
+          isGateway: true,
+          story: "English patriarch whose children Elizabeth Whitman and Ensign John Whitman settled in Weymouth, Massachusetts—connecting your tree directly to President Abraham Lincoln!",
+          cousinLinks: [{ id: "abraham-lincoln", label: "Shared Root with Pres. Abraham Lincoln" }]
+        }
+      ],
+
+      clapp: [
+        {
+          stepsUp: 10,
+          couple: "Jotham Carpenter Sr. & Desire Martin",
+          spouse: "Married 1707 in Rehoboth, MA",
+          dates: "Generation 5 • 1682–1760",
+          location: "Swansea & Rehoboth, Massachusetts",
+          badge: "Carpenter • Martin",
+          story: "Grandparents of Sybil Carpenter Ingalls.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 11,
+          couple: "Benjamin Carpenter & Renew Weeks",
+          spouse: "Married 1683 in Dorchester, MA",
+          dates: "Generation 4 • Benjamin (1658–1727) & Renew (1660–1703)",
+          location: "Dorchester → Swansea & Rehoboth, Massachusetts",
+          badge: "Carpenter • Weeks",
+          story: "Born in Dorchester, MA on August 12, 1660, Renew Weeks brought the Dorchester Weeks, Atherton, and Clapp bloodlines into the Carpenter family.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 12,
+          couple: "William Weeks & Elizabeth Atherton",
+          spouse: "Married 1650 in Dorchester, MA",
+          dates: "Generation 3 • 1628–1677",
+          location: "Devon, England → Dorchester, Massachusetts",
+          badge: "Weeks • Atherton",
+          story: "Served as Clerk of the Writs in Dorchester, MA; his wife Elizabeth was the daughter of Major General Humphrey Atherton.",
+          cousinLinks: []
+        },
+        {
+          stepsUp: 13,
+          couple: "George Weeks & Jane Clapp",
+          spouse: "Married 1628 in Salcombe Regis, Devon, England",
+          dates: "Generation 2 • George (1600–1650) & Jane (1608–1668)",
+          location: "Salcombe Regis, Devon → Dorchester, Massachusetts",
+          badge: "⛵ DORCHESTER IMMIGRANTS",
+          story: "Jane Clapp was the sister of famous Dorchester commander Capt. Roger Clapp AND sister of Sarah Clapp—the direct ancestor of 32nd President Franklin D. Roosevelt!",
+          cousinLinks: [{ id: "fdr", label: "Sister Sarah Clapp → Pres. Franklin D. Roosevelt" }]
+        },
+        {
+          stepsUp: 14,
+          couple: "William Clapp & Johan Channon",
+          spouse: "Married Sept 11, 1593 in Salcombe Regis, Devon, England",
+          dates: "Generation 1 (Root) • c. 1565–1640",
+          location: "Salcombe Regis, Devonshire, England",
+          badge: "👑 SHARED ANCESTOR WITH FRANKLIN D. ROOSEVELT",
+          isGateway: true,
+          story: "Parents of Dorchester colonists Jane Clapp (your ancestor), Sarah Clapp (FDR's ancestor), and Capt. Roger Clapp.",
+          cousinLinks: [{ id: "fdr", label: "Shared Root with Pres. Franklin D. Roosevelt" }]
+        }
+      ]
+    };
+
+    function getRowRelationshipLabel(stepIndex, hasLeft, hasRight, commonShortName, removedCounter) {
+      if (hasLeft && hasRight) {
+        if (stepIndex === 0) {
+          return {
+            badge: "STEP 1 • SIBLINGS (BROTHER & SISTER)",
+            desc: `Both are children of ${commonShortName}`,
+            bg: "bg-amber-200/80 text-amber-950 border-amber-400"
+          };
+        } else if (stepIndex === 1) {
+          return {
+            badge: "STEP 2 • 1st COUSINS TO EACH OTHER",
+            desc: `Grandchildren of ${commonShortName}`,
+            bg: "bg-slate-200/90 text-slate-800 border-slate-300"
+          };
+        } else {
+          const cousinNum = stepIndex;
+          const ggCount = stepIndex - 1;
+          const ggLabel = ggCount === 1 ? "Great-Grandchildren" : `${ggCount}x Great-Grandchildren`;
+          return {
+            badge: `STEP ${stepIndex + 1} • ${ordinal(cousinNum)} COUSINS TO EACH OTHER`,
+            desc: `${ggLabel} of ${commonShortName}`,
+            bg: "bg-slate-200/90 text-slate-800 border-slate-300"
+          };
+        }
+      } else {
+        return {
+          badge: `STEP ${stepIndex + 1} • +${removedCounter} GENERATION${removedCounter > 1 ? 'S' : ''} REMOVED`,
+          desc: `Continuing down to the present day (${removedCounter}x Removed)`,
+          bg: "bg-amber-100/90 text-amber-900 border-amber-300"
+        };
+      }
+    }
+
+    const FAMOUS_RELATIVES = [
+      {
+        id: "taylor-swift",
+        name: "Taylor Swift",
+        title: "14x Grammy-Winning Singer-Songwriter",
+        years: "Born Dec 13, 1989",
+        emoji: "🎸",
+        categories: ["mayflower", "pop"],
+        badgeText: "Mayflower Billington Cousin",
+        badgeColor: "bg-rose-100 text-rose-800 border-rose-300",
+        commonAncestor: "Francis Billington (1606–1684) & Christian Penn",
+        commonShort: "Francis Billington & Christian Penn",
+        commonParentNote: "Son of 1620 Mayflower passengers John & Elinor Billington",
+        commonLocation: "Aboard the Mayflower (1620) & Plymouth Colony, MA",
+        relationByViewer: {
+          paula: "10th Cousin, 1x Removed",
+          clint: "11th Cousin",
+          girls: "11th Cousin, 1x Removed"
+        },
+        headlineFact: "Both your family and Taylor Swift descend directly from Mayflower troublemaker Francis Billington (1606–1684)—the 14-year-old boy who fired gunpowder squibs next to an open keg of gunpowder on the Mayflower!",
+        story: "In Step 1 below, Mercy Billington (your ancestor) and Mary Billington (Taylor Swift's ancestor) were sisters—both daughters of Mayflower passenger Francis Billington and his wife Christian Penn! Look at Step 2 on Taylor's side: Mary's daughter Sarah Sabin married John Kingsley, and that 'Kingsley' surname was passed all the way down to Taylor's father, Scott Kingsley Swift!",
+        yourBranchStart: [
+          { name: "Mercy Billington", spouse: "m. John Martin (1681)", dates: "1646–1718", place: "Plymouth → Rehoboth, MA" },
+          { name: "Desire Martin", spouse: "m. Jotham Carpenter Sr. (1707)", dates: "1685–1727", place: "Rehoboth, MA" },
+          { name: "Deacon Jotham Carpenter Jr.", spouse: "m. Mehitable Thompson (1728)", dates: "1708–1777", place: "Rehoboth, MA" },
+          { name: "Sybil Carpenter", spouse: "m. Lt. Henry Ingalls (Dec 31, 1761)", dates: "1740–1833 (Lived to 94!)", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Mary Billington", spouse: "m. Samuel Sabin (1663)", dates: "c. 1640–1717", place: "Plymouth → Rehoboth, MA" },
+          { name: "Sarah Sabin", spouse: "m. John Kingsley (1686)", dates: "1667–1709", place: "Rehoboth, MA → Windham, CT" },
+          { name: "Ezra Kingsley", spouse: "m. Elizabeth Wight (1719)", dates: "1698–1759", place: "Windham, CT" },
+          { name: "Salmon Kingsley", spouse: "m. Lydia Burgess (1744)", dates: "1723–1813", place: "Windham, CT" },
+          { name: "Oren Kingsley Sr.", spouse: "m. Huldah Coon", dates: "1764–1822", place: "Connecticut → New York" },
+          { name: "Oren Kingsley Jr.", spouse: "m. Margaret Buchanan", dates: "1795–1870", place: "New York → Pennsylvania" },
+          { name: "Rev. Alanson Kingsley", spouse: "m. Laura Ann Jackett", dates: "1828–1909", place: "Pennsylvania" },
+          { name: "Barbara Maria Jane Kingsley", spouse: "m. Willis Wilbur Thompson", dates: "1859–1930", place: "Pennsylvania" },
+          { name: "Bernice Maude Thompson", spouse: "m. Archie Dean Swift", dates: "1887–1967", place: "Pennsylvania" },
+          { name: "Lt. Col. Archie Dean Swift Jr.", spouse: "m. Rose Baldi Douglas", dates: "1917–1998", place: "Pennsylvania" },
+          { name: "Scott Kingsley Swift", spouse: "m. Andrea Gardner Finlay", dates: "b. 1952", place: "Wyomissing, PA" },
+          { name: "Taylor Alison Swift", spouse: "14x Grammy Winner", dates: "b. Dec 13, 1989", place: "West Reading, PA → Nashville", highlight: true }
+        ]
+      },
+
+      {
+        id: "james-garfield",
+        name: "President James A. Garfield",
+        title: "20th President of the United States",
+        years: "1831–1881 (Elected 1880)",
+        emoji: "🏛️",
+        categories: ["president", "ingalls", "mayflower"],
+        badgeText: "Closest Presidential Cousin (Double Cousin!)",
+        badgeColor: "bg-amber-100 text-amber-900 border-amber-300",
+        commonAncestor: "Lt. Henry Ingalls (1738–1813) & Sybil Carpenter (1740–1833)",
+        commonShort: "Lt. Henry Ingalls & Sybil Carpenter",
+        commonParentNote: "Uniting both your 1629 Edmund Ingalls line AND your 1620 Mayflower John Billington line!",
+        commonLocation: "Rehoboth, MA & Richmond, New Hampshire",
+        relationByViewer: {
+          paula: "2nd Cousin, 4x Removed",
+          clint: "2nd Cousin, 5x Removed",
+          girls: "2nd Cousin, 6x Removed"
+        },
+        headlineFact: "Your closest presidential relative! President Garfield shares ALL SEVEN of your first colonial generations—making him both an Ingalls cousin AND a Mayflower John Billington cousin!",
+        story: "In Step 1 below, Deacon Rufus Ingalls (your ancestor) and Mehitable Ingalls (Garfield's grandmother) were brother and sister—both children of Lt. Henry Ingalls and Sybil Carpenter! Look at Step 3: when James A. Garfield was elected President in 1880, your ancestor Dr. Henry William Dye (and his daughter Ann M. Dye Hitchcock in Humphrey, NY) were living right in Cattaraugus County as the sitting President's 2nd cousins!",
+        yourBranchStart: [...POST_1761_LINE],
+        theirBranch: [
+          { name: "Mehitable Ingalls", spouse: "m. James Ballou (1786)", dates: "1764–1821", place: "Richmond, Cheshire Co., NH" },
+          { name: "Eliza Ballou", spouse: "m. Abram Garfield (1820)", dates: "1801–1888", place: "New Hampshire → Orange, Ohio" },
+          { name: "President James Abram Garfield", spouse: "m. Lucretia Rudolph", dates: "1831–1881 (20th U.S. President)", place: "Moreland Hills, OH → Washington, D.C.", highlight: true }
+        ]
+      },
+
+      {
+        id: "abraham-lincoln",
+        name: "President Abraham Lincoln",
+        title: "16th President of the United States",
+        years: "1809–1865 (Preserved the Union)",
+        emoji: "🎩",
+        categories: ["president"],
+        badgeText: "Origin of the Name 'Abraham'!",
+        badgeColor: "bg-blue-100 text-blue-900 border-blue-300",
+        commonAncestor: "Richard Whitman (c. 1570–c. 1638) of Buckinghamshire, England",
+        commonShort: "Richard Whitman",
+        commonParentNote: "Father of Massachusetts colonists Elizabeth Whitman (your line) & Ensign John Whitman (Lincoln's line)",
+        commonLocation: "Lee, Buckinghamshire, England → Weymouth, Massachusetts",
+        relationByViewer: {
+          paula: "7th Cousin, 4x Removed",
+          clint: "7th Cousin, 5x Removed",
+          girls: "7th Cousin, 6x Removed"
+        },
+        headlineFact: "Your Whitman family branch is the exact family that introduced the first name 'Abraham' into the Lincoln family tree!",
+        story: "Yes—in Step 1 below, Elizabeth Whitman (your ancestor) and Ensign John Whitman of Weymouth, MA (Lincoln's ancestor) were sister and brother! In Step 2 on Lincoln's side, John Whitman's daughter Sarah Whitman married Abraham Jones of Hull, MA. Their daughter Sarah Jones married Mordecai Lincoln Sr. (Step 3) and named their son after her father Abraham Jones—bringing the first name 'Abraham' into the Lincoln family tree!",
+        yourBranchStart: [
+          { name: "Elizabeth Whitman", spouse: "m. Thomas Stream (c. 1620)", dates: "c. 1600–1664", place: "England → Weymouth, MA" },
+          { name: "Elizabeth Stream", spouse: "m. Capt. John Holbrook", dates: "1624–1688", place: "Weymouth, MA" },
+          { name: "Eunice Holbrook", spouse: "m. Benjamin Ludden (1678)", dates: "1658–1699", place: "Weymouth, MA" },
+          { name: "Eunice Ludden", spouse: "m. Edmund Ingalls Sr. (1705)", dates: "1689–1749", place: "Weymouth → Rehoboth, MA" },
+          { name: "Ebenezer Ingalls Sr.", spouse: "m. Elizabeth Wheeler (1735)", dates: "1711–1771", place: "Rehoboth, MA" },
+          { name: "Lt. Henry Ingalls", spouse: "m. Sybil Carpenter (Dec 31, 1761)", dates: "1738–1813", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Ensign John Whitman", spouse: "m. Ruth Reed", dates: "c. 1602–1692", place: "England → Weymouth, MA" },
+          { name: "Sarah Whitman", spouse: "m. Abraham Jones (Brought 'Abraham' name!)", dates: "1633–1718", place: "Weymouth → Hull, MA" },
+          { name: "Sarah Jones", spouse: "m. Mordecai Lincoln Sr. (c. 1685)", dates: "1665–1706", place: "Hull → Scituate, MA" },
+          { name: "Mordecai Lincoln Jr.", spouse: "m. Hannah Salter (1714)", dates: "1686–1736", place: "Scituate, MA → Berks Co., PA" },
+          { name: "John 'Virginia John' Lincoln", spouse: "m. Rebecca Flowers Morris (1743)", dates: "1716–1788", place: "Pennsylvania → Rockingham Co., VA" },
+          { name: "Capt. Abraham Lincoln", spouse: "m. Bathsheba Herring (1770)", dates: "1744–1786", place: "Virginia → Jefferson Co., KY" },
+          { name: "Thomas Lincoln", spouse: "m. Nancy Hanks (1806)", dates: "1778–1851", place: "Kentucky → Indiana → Illinois" },
+          { name: "President Abraham Lincoln", spouse: "m. Mary Todd", dates: "1809–1865 (16th U.S. President)", place: "Hodgenville, KY → Washington, D.C.", highlight: true }
+        ]
+      },
+
+      {
+        id: "laura-ingalls-wilder",
+        name: "Laura Ingalls Wilder",
+        title: "Beloved Author of 'Little House on the Prairie'",
+        years: "1867–1957 (Charles 'Pa' Ingalls: 1836–1902)",
+        emoji: "🏡",
+        categories: ["ingalls"],
+        badgeText: "Direct Ingalls Cousin",
+        badgeColor: "bg-emerald-100 text-emerald-900 border-emerald-300",
+        commonAncestor: "Edmund Ingalls (1586–1648) & Annis Telbe",
+        commonShort: "Edmund Ingalls & Annis Telbe",
+        commonParentNote: "Son of Robert Ingalls (1550–1617) & Grandson of Henry Ingalls (1520–1555) of Lincolnshire, England",
+        commonLocation: "Skirbeck, Lincolnshire, England → Lynn, Massachusetts (1629)",
+        relationByViewer: {
+          paula: "7th Cousin, 3x Removed",
+          clint: "7th Cousin, 4x Removed",
+          girls: "7th Cousin, 5x Removed"
+        },
+        headlineFact: "Charles 'Pa' Ingalls (born right in Cuba, Allegany County, NY in 1836!) and his daughter Laura Ingalls Wilder descend from your exact immigrant ancestor, Edmund Ingalls of Lynn, Massachusetts!",
+        story: "In Step 1 below, John Ingalls (your ancestor who lived to age 97!) and Henry Ingalls (Laura's ancestor) were brothers—both sons of Lynn founder Edmund Ingalls! Even wilder: look at Step 8 on Laura's side—her father, Charles 'Pa' Ingalls, was born in Cuba, Allegany County, NY in 1836, right next door to where your Hitchcock and Dye ancestors lived!",
+        yourBranchStart: [
+          { name: "John Ingalls", spouse: "m. Elizabeth Barrett (May 1667)", dates: "1624–1721 (Lived to age 97!)", place: "Lynn → Rehoboth, MA" },
+          { name: "Edmund Ingalls Sr.", spouse: "m. Eunice Ludden (1705)", dates: "1679–1749", place: "Rehoboth, MA" },
+          { name: "Ebenezer Ingalls Sr.", spouse: "m. Elizabeth Wheeler (1735)", dates: "1711–1771", place: "Rehoboth, MA" },
+          { name: "Lt. Henry Ingalls", spouse: "m. Sybil Carpenter (Dec 31, 1761)", dates: "1738–1813 (DAR Patriot)", place: "Rehoboth, MA → Richmond, NH → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Henry Ingalls", spouse: "m. Mary Osgood (1653)", dates: "1627–1719", place: "Lynn → Andover, MA" },
+          { name: "Sgt. Samuel Ingalls", spouse: "m. Sarah Hendrick (1682)", dates: "1654–1733", place: "Andover, MA" },
+          { name: "Capt. Samuel Ingalls", spouse: "m. Mary Watts (1708)", dates: "1683–1760", place: "Andover, MA → Chester, NH" },
+          { name: "Timothy Ingalls", spouse: "Trader of Chester, NH", dates: "1720–c. 1760", place: "Chester, NH" },
+          { name: "Jonathan Ingalls", spouse: "m. Martha Jane Locke", dates: "1750–1834", place: "Bridgewater, NH" },
+          { name: "Samuel Ingalls", spouse: "m. Margaret Delano", dates: "1771–1841", place: "New Hampshire → Western NY" },
+          { name: "Lansford Whiting Ingalls", spouse: "m. Laura Louisa Colby", dates: "1812–1896 ('Grandpa' in Big Woods)", place: "Cuba, Allegany Co., NY → Wisconsin" },
+          { name: "Charles Phillip 'Pa' Ingalls", spouse: "m. Caroline Lake Quiner ('Ma')", dates: "1836–1902 (Born in Cuba, NY!)", place: "Cuba, NY → Wisconsin → De Smet, SD" },
+          { name: "Laura Elizabeth Ingalls Wilder", spouse: "m. Almanzo Wilder (1885)", dates: "1867–1957", place: "Pepin, WI → Mansfield, MO", highlight: true }
+        ]
+      },
+
+      {
+        id: "willis-carrier",
+        name: "Willis Haviland Carrier",
+        title: "Inventor of Modern Air Conditioning (1902)",
+        years: "1876–1950 (Born in Angola, NY!)",
+        emoji: "❄️",
+        categories: ["ingalls"],
+        badgeText: "Direct Ingalls & Carrier Cousin",
+        badgeColor: "bg-cyan-100 text-cyan-900 border-cyan-300",
+        commonAncestor: "Edmund Ingalls (1586–1648) & Annis Telbe",
+        commonShort: "Edmund Ingalls & Annis Telbe",
+        commonParentNote: "Founders of Lynn, Massachusetts (1629)",
+        commonLocation: "Lynn, Massachusetts (1629) → Western New York",
+        relationByViewer: {
+          paula: "7th Cousin, 3x Removed",
+          clint: "7th Cousin, 4x Removed",
+          girls: "7th Cousin, 5x Removed"
+        },
+        headlineFact: "210 years after Cotton Mather called your Aunt Martha Carrier the 'Queen of Hell' at the 1692 Salem Witch Trials, her 5th great-grandson Willis Carrier invented modern air conditioning in Buffalo, NY!",
+        story: "In Step 1 below, John Ingalls (your ancestor) and Faith Ingalls (Willis Carrier's ancestor) were brother and sister! Faith's daughter was Salem Witch Trials heroine Martha (Allen) Carrier (Step 2). Martha's son Andrew Carrier survived torture in the Salem dungeon, and his descendants migrated to Angola, Erie County, NY—where Willis Carrier was born in 1876 (the exact same year your ancestor Marion Henry Hitchcock was born in Humphrey, NY!).",
+        yourBranchStart: [
+          { name: "John Ingalls", spouse: "m. Elizabeth Barrett (1667)", dates: "1624–1721", place: "Lynn → Rehoboth, MA" },
+          { name: "Edmund Ingalls Sr.", spouse: "m. Eunice Ludden (1705)", dates: "1679–1749", place: "Rehoboth, MA" },
+          { name: "Ebenezer Ingalls Sr.", spouse: "m. Elizabeth Wheeler (1735)", dates: "1711–1771", place: "Rehoboth, MA" },
+          { name: "Lt. Henry Ingalls", spouse: "m. Sybil Carpenter (1761)", dates: "1738–1813", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Faith Ingalls", spouse: "m. Andrew Allen (c. 1642)", dates: "1622–1668", place: "Skirbeck → Lynn → Andover, MA" },
+          { name: "Martha Allen Carrier", spouse: "m. Thomas Carrier (1674)", dates: "c. 1650–Aug 19, 1692", place: "Andover → Salem, MA" },
+          { name: "Andrew Carrier Sr.", spouse: "m. Mary Adams (1704)", dates: "1677–1749 (Survived Salem Dungeon)", place: "Andover, MA → Colchester, CT" },
+          { name: "Andrew Carrier Jr.", spouse: "m. Rebecca Rockwell (1735)", dates: "1705–1776", place: "Colchester → Marlborough, CT" },
+          { name: "Joseph Carrier", spouse: "m. Ruth Adams (1766)", dates: "1737–1800", place: "Marlborough, CT" },
+          { name: "David Carrier", spouse: "m. Elizabeth 'Betsey' Howe (1799)", dates: "1776–1857", place: "Connecticut → Angola, Erie Co., NY" },
+          { name: "Philo Hale Carrier", spouse: "m. Mary Williams (1835)", dates: "1810–1879", place: "Angola, Erie Co., NY" },
+          { name: "Duane Williams Carrier", spouse: "m. Elizabeth R. Haviland (1868)", dates: "1836–1908", place: "Angola, Erie Co., NY" },
+          { name: "Willis Haviland Carrier", spouse: "Founder of Carrier HVAC", dates: "1876–1950 (Invented A/C in 1902)", place: "Angola & Buffalo, NY", highlight: true }
+        ]
+      },
+
+      {
+        id: "martha-carrier",
+        name: "Martha (Allen) Carrier",
+        title: "Defiant Heroine of the 1692 Salem Witch Trials",
+        years: "c. 1650–August 19, 1692",
+        emoji: "🔥",
+        categories: ["ingalls"],
+        badgeText: "1st Cousin 10x–12x Removed",
+        badgeColor: "bg-orange-100 text-orange-900 border-orange-300",
+        commonAncestor: "Edmund Ingalls (1586–1648) & Annis Telbe",
+        commonShort: "Edmund Ingalls & Annis Telbe",
+        commonParentNote: "Founders of Lynn, Massachusetts (1629)",
+        commonLocation: "Lynn & Andover, Massachusetts",
+        relationByViewer: {
+          paula: "1st Cousin, 10x Removed",
+          clint: "1st Cousin, 11x Removed",
+          girls: "1st Cousin, 12x Removed"
+        },
+        headlineFact: "Granddaughter of Edmund Ingalls who married 7-foot-tall Thomas Carrier and stared down the corrupt Salem Witch Trial judges, telling them: 'It is a shameful thing that you should mind these folks that are out of their wits!'",
+        story: "Look at Step 1 and Step 2 below: because Martha Carrier's mother Faith Ingalls was the sister of your ancestor John Ingalls, Martha (Allen) Carrier and your ancestor Edmund Ingalls Sr. were literal 1st Cousins!",
+        yourBranchStart: [
+          { name: "John Ingalls", spouse: "m. Elizabeth Barrett (1667)", dates: "1624–1721 (Martha's Uncle!)", place: "Lynn → Rehoboth, MA" },
+          { name: "Edmund Ingalls Sr.", spouse: "m. Eunice Ludden (1705)", dates: "1679–1749 (Martha's 1st Cousin!)", place: "Rehoboth, MA" },
+          { name: "Ebenezer Ingalls Sr.", spouse: "m. Elizabeth Wheeler (1735)", dates: "1711–1771", place: "Rehoboth, MA" },
+          { name: "Lt. Henry Ingalls", spouse: "m. Sybil Carpenter (1761)", dates: "1738–1813", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Faith Ingalls", spouse: "m. Andrew Allen (c. 1642)", dates: "1622–1668", place: "Lynn → Andover, MA" },
+          { name: "Martha Allen Carrier", spouse: "m. Thomas Carrier (7-ft Welshman who lived to 109!)", dates: "c. 1650–1692", place: "Andover & Salem, MA", highlight: true }
+        ]
+      },
+
+      {
+        id: "george-hw-bush",
+        name: "Presidents George H.W. & George W. Bush",
+        title: "41st & 43rd Presidents of the United States",
+        years: "H.W. Bush (1924–2018) • W. Bush (b. 1946)",
+        emoji: "🦅",
+        categories: ["president"],
+        badgeText: "Rehoboth Wheeler Cousins",
+        badgeColor: "bg-indigo-100 text-indigo-900 border-indigo-300",
+        commonAncestor: "James Wheeler Jr. (1697–1740) & Elizabeth West",
+        commonShort: "James Wheeler Jr. & Elizabeth West",
+        commonParentNote: "Descended from Capt. Henry Wheeler & John Wheeler (1591–1670) of Newbury, MA",
+        commonLocation: "Rehoboth, Bristol County, Massachusetts",
+        relationByViewer: {
+          paula: "7th Cousin, 1x / 2x Removed",
+          clint: "7th Cousin, 2x / 3x Removed",
+          girls: "7th Cousin, 3x / 4x Removed"
+        },
+        headlineFact: "Great-Grandpa Lionel P. Hitchcock of Allegany, NY was a straight 7th cousin to 41st President George H.W. Bush!",
+        story: "In Step 1 below, your ancestor Elizabeth Wheeler (who married Ebenezer Ingalls Sr. in 1735) and Jeremiah Wheeler (ancestor of the Bush Presidents) were sister and brother in Rehoboth, Massachusetts! Notice how at Step 8, Great-Grandpa Lionel P. Hitchcock and 41st President George H.W. Bush line up on the exact same generation as straight 7th Cousins!",
+        yourBranchStart: [
+          { name: "Elizabeth Wheeler", spouse: "m. Ebenezer Ingalls Sr. (1735)", dates: "b. June 9, 1717", place: "Rehoboth, MA" },
+          { name: "Lt. Henry Ingalls", spouse: "m. Sybil Carpenter (Dec 31, 1761)", dates: "1738–1813", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Jeremiah Wheeler", spouse: "m. Submit Horton (1753)", dates: "1731–1811", place: "Rehoboth, MA" },
+          { name: "Jarvis Wheeler", spouse: "m. Sarah Horton (1797)", dates: "1774–1852", place: "Rehoboth, MA" },
+          { name: "Betsey Slade Wheeler", spouse: "m. Levi Pierce (1818)", dates: "1800–1881", place: "Rehoboth, MA" },
+          { name: "Elizabeth Slade Pierce", spouse: "m. Courtland P.L. Butler (1840)", dates: "1822–1901", place: "Massachusetts → Columbus, OH" },
+          { name: "Mary Elizabeth Butler", spouse: "m. Robert Emmet Sheldon (1869)", dates: "1849–1897", place: "Columbus, OH" },
+          { name: "Flora Sheldon", spouse: "m. Samuel Prescott Bush (1894)", dates: "1872–1920", place: "Columbus, OH" },
+          { name: "Sen. Prescott Sheldon Bush", spouse: "m. Dorothy Wear Walker (1921)", dates: "1895–1972 (U.S. Senator)", place: "Columbus, OH → Greenwich, CT" },
+          { name: "President George H.W. Bush (41st)", spouse: "m. Barbara Pierce", dates: "1924–2018 (7th Cousin to Lionel Hitchcock!)", place: "Milton, MA → Houston, TX", highlight: true },
+          { name: "President George W. Bush (43rd)", spouse: "m. Laura Welch", dates: "b. 1946 (43rd U.S. President)", place: "New Haven, CT → Crawford, TX", highlight: true }
+        ]
+      },
+
+      {
+        id: "richard-gere",
+        name: "Richard Gere",
+        title: "Golden Globe-Winning Hollywood Actor",
+        years: "Born August 31, 1949",
+        emoji: "🎬",
+        categories: ["mayflower", "pop"],
+        badgeText: "Mayflower Billington Cousin",
+        badgeColor: "bg-purple-100 text-purple-900 border-purple-300",
+        commonAncestor: "Francis Billington (1606–1684) & Christian Penn",
+        commonShort: "Francis Billington & Christian Penn",
+        commonParentNote: "Son of 1620 Mayflower passengers John & Elinor Billington",
+        commonLocation: "Aboard the Mayflower (1620) & Plymouth Colony, MA",
+        relationByViewer: {
+          paula: "9th Cousin, 1x Removed",
+          clint: "10th Cousin",
+          girls: "10th Cousin, 1x Removed"
+        },
+        headlineFact: "Hollywood star Richard Gere (Pretty Woman, Chicago, An Officer and a Gentleman) is your verified Mayflower cousin through Francis Billington!",
+        story: "In Step 1 below, Mercy Billington (your ancestor) and Martha Billington (Richard Gere's ancestor) were sisters—both daughters of Francis Billington and Christian Penn! Martha married fellow Mayflower passenger Samuel Eaton in Plymouth in 1660, and their descendants eventually settled in Syracuse, NY where Richard Gere grew up.",
+        yourBranchStart: [
+          { name: "Mercy Billington", spouse: "m. John Martin (1681)", dates: "1646–1718", place: "Plymouth → Rehoboth, MA" },
+          { name: "Desire Martin", spouse: "m. Jotham Carpenter Sr. (1707)", dates: "1685–1727", place: "Rehoboth, MA" },
+          { name: "Deacon Jotham Carpenter Jr.", spouse: "m. Mehitable Thompson (1728)", dates: "1708–1777", place: "Rehoboth, MA" },
+          { name: "Sybil Carpenter", spouse: "m. Lt. Henry Ingalls (1761)", dates: "1740–1833", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Martha Billington", spouse: "m. Samuel Eaton (1660, Mayflower Passenger)", dates: "c. 1638–1704", place: "Plymouth → Middleborough, MA" },
+          { name: "Mercy Eaton", spouse: "m. Samuel Fuller (1686)", dates: "c. 1665–1704", place: "Plymouth → Middleborough, MA" },
+          { name: "Seth Fuller", spouse: "m. Sarah Wright (1720)", dates: "1692–1775", place: "Plympton, MA" },
+          { name: "Archippus Fuller", spouse: "m. Maria Rider (1753)", dates: "1721–1811", place: "Plympton, MA → Vermont" },
+          { name: "Consider Fuller", spouse: "m. Ruth Elmes", dates: "1755–c. 1820", place: "Massachusetts → Pennsylvania" },
+          { name: "Lucinda Fuller", spouse: "m. Jonathan Tewksbury", dates: "1795–1868", place: "Brooklyn, Susquehanna Co., PA" },
+          { name: "Sarah E. Tewksbury", spouse: "m. Albert Rezin Geer (1846)", dates: "1824–1899", place: "Brooklyn, PA" },
+          { name: "George Lane Gere", spouse: "m. Mary Alworth", dates: "1848–1932", place: "Brooklyn, PA" },
+          { name: "Albert William Gere", spouse: "m. Hazel Marjorie Snover", dates: "1888–1974", place: "Pennsylvania → Syracuse, NY" },
+          { name: "Homer George Gere", spouse: "m. Doris Anna Tiffany (Lived to 100!)", dates: "1922–2023", place: "Syracuse, NY" },
+          { name: "Richard Tiffany Gere", spouse: "Hollywood Leading Man", dates: "b. 1949", place: "Philadelphia, PA / Syracuse, NY", highlight: true }
+        ]
+      },
+
+      {
+        id: "brian-wilson",
+        name: "Brian, Dennis & Carl Wilson (The Beach Boys)",
+        title: "Rock & Roll Hall of Fame Legends ('Pet Sounds', 'Good Vibrations')",
+        years: "Brian Wilson (b. 1942)",
+        emoji: "🏄‍♂️",
+        categories: ["mayflower", "pop"],
+        badgeText: "Mayflower Billington Cousins",
+        badgeColor: "bg-sky-100 text-sky-900 border-sky-300",
+        commonAncestor: "Francis Billington (1606–1684) & Christian Penn",
+        commonShort: "Francis Billington & Christian Penn",
+        commonParentNote: "Son of 1620 Mayflower passengers John & Elinor Billington",
+        commonLocation: "Aboard the Mayflower (1620) & Plymouth Colony, MA",
+        relationByViewer: {
+          paula: "9th Cousin, 1x Removed",
+          clint: "10th Cousin",
+          girls: "10th Cousin, 1x Removed"
+        },
+        headlineFact: "Along with Taylor Swift, the Wilson brothers of The Beach Boys are your verified cousins through Mayflower rebel Francis Billington!",
+        story: "In Step 1 below, Mercy Billington (your ancestor) and Isaac Billington (ancestor of The Beach Boys) were sister and brother—both children of Mayflower passenger Francis Billington!",
+        yourBranchStart: [
+          { name: "Mercy Billington", spouse: "m. John Martin (1681)", dates: "1646–1718", place: "Plymouth → Rehoboth, MA" },
+          { name: "Desire Martin", spouse: "m. Jotham Carpenter Sr. (1707)", dates: "1685–1727", place: "Rehoboth, MA" },
+          { name: "Deacon Jotham Carpenter Jr.", spouse: "m. Mehitable Thompson (1728)", dates: "1708–1777", place: "Rehoboth, MA" },
+          { name: "Sybil Carpenter", spouse: "m. Lt. Henry Ingalls (1761)", dates: "1740–1833", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Isaac Billington", spouse: "m. Hannah Glass (c. 1675)", dates: "1644–1709", place: "Plymouth → Middleborough, MA" },
+          { name: "Mary Billington", spouse: "m. Elnathan Wood (1712)", dates: "1685–1733", place: "Middleborough, MA" },
+          { name: "Lydia Wood", spouse: "m. John Tomson (1741)", dates: "1722–1761", place: "Middleborough, MA" },
+          { name: "Lydia Tomson", spouse: "m. Thomas Gifford (1772)", dates: "1748–c. 1805", place: "Massachusetts → New York" },
+          { name: "Huldah Gifford", spouse: "m. Abraham Finney", dates: "1774–1832", place: "New York" },
+          { name: "Abraham Finney Jr.", spouse: "Pioneer Farmer", dates: "1803–1877", place: "New York → Wisconsin" },
+          { name: "Eli Barnum Finney", spouse: "m. Ellen Celia Coughlin", dates: "1842–1908", place: "Wisconsin → Kansas" },
+          { name: "Albert H. Finney", spouse: "m. Elnora Brass", dates: "1867–1949", place: "Kansas" },
+          { name: "Ruth Edna Finney", spouse: "m. Carl Arie Korthof", dates: "1894–1982", place: "Kansas → California" },
+          { name: "Audree Neva Korthof", spouse: "m. Murry Gage Wilson", dates: "1917–1997", place: "Hawthorne, CA" },
+          { name: "Brian, Dennis & Carl Wilson", spouse: "Co-Founders of The Beach Boys", dates: "Brian b. 1942", place: "Hawthorne, California", highlight: true }
+        ]
+      },
+
+      {
+        id: "chester-arthur",
+        name: "President Chester A. Arthur",
+        title: "21st President of the United States",
+        years: "1829–1886 (Garfield's 1880 Running Mate!)",
+        emoji: "🗳️",
+        categories: ["president"],
+        badgeText: "The All-Cousin 1880 Ticket!",
+        badgeColor: "bg-amber-100 text-amber-900 border-amber-300",
+        commonAncestor: "John Wheeler (1591–1670) & Agnes Yeoman",
+        commonShort: "John Wheeler & Agnes Yeoman",
+        commonParentNote: "Foundational Great Migration settlers of Newbury, Massachusetts",
+        commonLocation: "Salisbury, England → Newbury, Massachusetts (1634)",
+        relationByViewer: {
+          paula: "7th Cousin, 4x Removed",
+          clint: "7th Cousin, 5x Removed",
+          girls: "7th Cousin, 6x Removed"
+        },
+        headlineFact: "In the Presidential Election of 1880, BOTH the Presidential candidate (James A. Garfield) AND the Vice Presidential candidate (Chester A. Arthur) were your cousins!",
+        story: "In Step 1 below, Capt. Henry Wheeler (your ancestor) and Anne Wheeler (Chester A. Arthur's ancestor) were brother and sister—both born to John Wheeler and Agnes Yeoman! That means the entire 1880 Republican ticket (Garfield & Arthur) was made up of two cousins from your family tree.",
+        yourBranchStart: [
+          { name: "Capt. Henry Wheeler", spouse: "m. Abigail Allen (1659)", dates: "1634–1696", place: "Salisbury, MA" },
+          { name: "James Wheeler Sr.", spouse: "m. Grizzel Squire", dates: "1667–1753", place: "Salisbury → Rehoboth, MA" },
+          { name: "James Wheeler Jr.", spouse: "m. Elizabeth West", dates: "1697–1740", place: "Rehoboth, MA" },
+          { name: "Elizabeth Wheeler", spouse: "m. Ebenezer Ingalls Sr. (1735)", dates: "b. 1717", place: "Rehoboth, MA" },
+          { name: "Lt. Henry Ingalls", spouse: "m. Sybil Carpenter (1761)", dates: "1738–1813", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Anne Wheeler", spouse: "m. Aquila Chase (1644)", dates: "1621–1687", place: "Hampton, NH → Newbury, MA" },
+          { name: "Sarah Chase", spouse: "m. Charles Annis (1666)", dates: "1645–1726", place: "Newbury, MA" },
+          { name: "Hannah Annis", spouse: "m. Ephraim Worthen (1700)", dates: "1679–1723", place: "Newbury → Amesbury, MA" },
+          { name: "Judith Worthen", spouse: "m. Roger Stevens (1734)", dates: "1712–1778", place: "Amesbury, MA" },
+          { name: "Abner Stevens", spouse: "m. Dorothy Nichols", dates: "1742–c. 1800", place: "Massachusetts → New Hampshire" },
+          { name: "Judith Stevens", spouse: "m. George Washington Stone", dates: "1782–1853", place: "New Hampshire → Vermont" },
+          { name: "Malvina Stone", spouse: "m. Rev. William Arthur", dates: "1802–1869", place: "Berkshire, VT → New York" },
+          { name: "President Chester Alan Arthur", spouse: "m. Ellen Lewis Herndon", dates: "1829–1886 (21st U.S. President)", place: "Fairfield, VT → New York City", highlight: true }
+        ]
+      },
+
+      {
+        id: "fdr",
+        name: "President Franklin D. Roosevelt",
+        title: "32nd President of the United States",
+        years: "1882–1945 (Led America through WWII)",
+        emoji: "🎙️",
+        categories: ["president"],
+        badgeText: "Dorchester Clapp Cousin",
+        badgeColor: "bg-blue-100 text-blue-900 border-blue-300",
+        commonAncestor: "William Clapp (c. 1565–1640) & Johan Channon",
+        commonShort: "William Clapp & Johan Channon",
+        commonParentNote: "Parents of Dorchester, MA colonists Jane Clapp (your line), Sarah Clapp (FDR's line) & Capt. Roger Clapp",
+        commonLocation: "Salcombe Regis, Devon, England → Dorchester, Massachusetts (1630s)",
+        relationByViewer: {
+          paula: "8th Cousin, 4x Removed",
+          clint: "8th Cousin, 5x Removed",
+          girls: "8th Cousin, 6x Removed"
+        },
+        headlineFact: "Through Sybil Carpenter's Dorchester Clapp and Weeks ancestors, you are verified cousins to 32nd President Franklin D. Roosevelt!",
+        story: "In Step 1 below, Jane Clapp (your ancestor who married George Weeks in Dorchester, MA) and Sarah Clapp (FDR's ancestor who married Deacon Nicholas Clapp in Dorchester, MA) were sisters! Jane Clapp's granddaughter Renew Weeks married Benjamin Carpenter, grandmother and grandfather of your Sybil Carpenter!",
+        yourBranchStart: [
+          { name: "Jane Clapp", spouse: "m. George Weeks (1628)", dates: "c. 1608–1668", place: "Devon, England → Dorchester, MA" },
+          { name: "William Weeks", spouse: "m. Elizabeth Atherton (1650)", dates: "1628–1677 (Clerk of Dorchester)", place: "Dorchester, MA" },
+          { name: "Renew Weeks", spouse: "m. Benjamin Carpenter (1683)", dates: "1660–1703", place: "Dorchester → Swansea/Rehoboth, MA" },
+          { name: "Jotham Carpenter Sr.", spouse: "m. Desire Martin (Billington line)", dates: "1682–1760", place: "Swansea → Rehoboth, MA" },
+          { name: "Deacon Jotham Carpenter Jr.", spouse: "m. Mehitable Thompson (1728)", dates: "1708–1777", place: "Rehoboth, MA" },
+          { name: "Sybil Carpenter", spouse: "m. Lt. Henry Ingalls (1761)", dates: "1740–1833", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Sarah Clapp", spouse: "m. Deacon Nicholas Clapp", dates: "1611–c. 1650", place: "Devon, England → Dorchester, MA" },
+          { name: "Hannah Clapp", spouse: "m. Elder Ebenezer Strong (1668)", dates: "1646–1726", place: "Dorchester → Northampton, MA" },
+          { name: "Hannah Strong", spouse: "m. Capt. Thomas Newberry (1698)", dates: "1671–1762", place: "Northampton, MA → Windsor, CT" },
+          { name: "Mary Newberry", spouse: "m. Josias Lynde (1736)", dates: "1716–1753", place: "Windsor, CT → Charlestown, MA" },
+          { name: "Sarah Lynde", spouse: "m. Capt. Joseph Howland (1772)", dates: "1750–1790", place: "Massachusetts → Norwich, CT" },
+          { name: "Deborah Howland", spouse: "m. Warren Delano Sr. (1808)", dates: "1783–1827", place: "Norwich, CT → Fairhaven, MA" },
+          { name: "Warren Delano Jr.", spouse: "m. Catherine Robbins Lyman (1843)", dates: "1809–1898", place: "Fairhaven, MA → Newburgh, NY" },
+          { name: "Sara Ann Delano", spouse: "m. James Roosevelt I (1880)", dates: "1854–1941", place: "Newburgh → Hyde Park, NY" },
+          { name: "President Franklin Delano Roosevelt", spouse: "m. Eleanor Roosevelt", dates: "1882–1945 (32nd U.S. President)", place: "Hyde Park, NY → Washington, D.C.", highlight: true }
+        ]
+      },
+
+      {
+        id: "taft-coolidge",
+        name: "Presidents William H. Taft & Calvin Coolidge",
+        title: "27th & 30th Presidents of the United States",
+        years: "Taft (1857–1930) • Coolidge (1872–1933)",
+        emoji: "⚖️",
+        categories: ["president"],
+        badgeText: "Weymouth Holbrook Cousins",
+        badgeColor: "bg-slate-200 text-slate-900 border-slate-300",
+        commonAncestor: "Thomas Holbrook (1589–1677) & Jane Powyes",
+        commonShort: "Thomas Holbrook & Jane Powyes",
+        commonParentNote: "Arrived in Weymouth, Massachusetts aboard the ship Marygould in 1635",
+        commonLocation: "Broadway, Somerset, England → Weymouth, Massachusetts (1635)",
+        relationByViewer: {
+          paula: "6th Cousin, 4x Removed",
+          clint: "6th Cousin, 5x Removed",
+          girls: "6th Cousin, 6x Removed"
+        },
+        headlineFact: "Through Thomas Holbrook of Weymouth, Massachusetts, you are cousins to 27th President & Chief Justice William Howard Taft (and share colonial Weymouth kinship with 30th President Calvin Coolidge)!",
+        story: "In Step 1 below, Capt. John Holbrook (your ancestor) and Thomas Holbrook Jr. (President Taft's ancestor) were brothers—both sons of 1635 immigrant Thomas Holbrook and Jane Powyes of Weymouth, MA! Every single generation from Thomas Holbrook down to President William Howard Taft is shown step-by-step below.",
+        yourBranchStart: [
+          { name: "Capt. John Holbrook", spouse: "m. Elizabeth Stream", dates: "1617–1699", place: "Weymouth, MA" },
+          { name: "Eunice Holbrook", spouse: "m. Benjamin Ludden (1678)", dates: "1658–1699", place: "Weymouth, MA" },
+          { name: "Eunice Ludden", spouse: "m. Edmund Ingalls Sr. (1705)", dates: "1689–1749", place: "Weymouth → Rehoboth, MA" },
+          { name: "Ebenezer Ingalls Sr.", spouse: "m. Elizabeth Wheeler (1735)", dates: "1711–1771", place: "Rehoboth, MA" },
+          { name: "Lt. Henry Ingalls", spouse: "m. Sybil Carpenter (1761)", dates: "1738–1813", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Thomas Holbrook Jr.", spouse: "m. Joanna Kingman (c. 1650)", dates: "c. 1624–1697", place: "Weymouth → Braintree, MA" },
+          { name: "Deacon Peter Holbrook", spouse: "m. Alice Godfrey (1678)", dates: "1655–1712", place: "Braintree → Mendon, MA" },
+          { name: "William Holbrook", spouse: "m. Hopestill Read (1722)", dates: "1694–1762", place: "Mendon → Uxbridge, MA" },
+          { name: "Deborah Holbrook", spouse: "m. Joseph Torrey (1752)", dates: "1732–1776", place: "Uxbridge, MA" },
+          { name: "William Torrey", spouse: "m. Anna Davenport", dates: "1754–1817", place: "Mendon, MA" },
+          { name: "Samuel Davenport Torrey", spouse: "m. Susan Holman Waters", dates: "1789–1877", place: "Millbury, MA" },
+          { name: "Louisa Maria Torrey", spouse: "m. Alphonso Taft (U.S. Attorney General)", dates: "1827–1907", place: "Millbury, MA → Cincinnati, OH" },
+          { name: "President William Howard Taft", spouse: "27th President & 10th Chief Justice (plus New England cousin Calvin Coolidge, 30th President)", dates: "1857–1930", place: "Cincinnati, OH → Washington, D.C.", highlight: true }
+        ]
+      },
+
+      {
+        id: "roger-chaffee",
+        name: "Lt. Cmdr. Roger B. Chaffee",
+        title: "NASA Apollo 1 Astronaut & Naval Aviator",
+        years: "1935–1967 (Congressional Space Medal of Honor)",
+        emoji: "🚀",
+        categories: ["mayflower"],
+        badgeText: "6th Cousin via Sybil's Brother!",
+        badgeColor: "bg-teal-100 text-teal-900 border-teal-300",
+        commonAncestor: "Deacon Jotham Carpenter Jr. (1708–1777) of Rehoboth, MA",
+        commonShort: "Deacon Jotham Carpenter Jr.",
+        commonParentNote: "Great-grandson of Mayflower passenger Francis Billington & 2x great-grandson of John Billington",
+        commonLocation: "Rehoboth, Bristol County, Massachusetts",
+        relationByViewer: {
+          paula: "6th Cousin, 1x Removed",
+          clint: "6th Cousin, 2x Removed",
+          girls: "6th Cousin, 3x Removed"
+        },
+        headlineFact: "Apollo 1 Astronaut Roger Chaffee shares your EXACT Mayflower Billington & Carpenter line all the way down to Sybil Carpenter's father Deacon Jotham Carpenter Jr.!",
+        story: "In Step 1 below, your ancestor Sybil Carpenter (b. 1740) and Roger Chaffee's ancestor Jotham Carpenter III (b. 1750) were sister and brother in Rehoboth, Massachusetts!",
+        yourBranchStart: [
+          { name: "Sybil Carpenter", spouse: "m. Lt. Henry Ingalls (Dec 31, 1761)", dates: "1740–1833", place: "Rehoboth, MA → Otsego Co., NY" },
+          ...POST_1761_LINE
+        ],
+        theirBranch: [
+          { name: "Jotham Carpenter III", spouse: "m. Hannah Gulley (1769)", dates: "1750–1817 (Sybil's Brother!)", place: "Rehoboth, MA → Cumberland, RI" },
+          { name: "Jotham Carpenter IV", spouse: "m. Abigail Whipple", dates: "1778–1859", place: "Rhode Island → Blissfield, MI" },
+          { name: "Llona Carpenter", spouse: "m. Ezra Chaffee", dates: "1806–1887", place: "New York → Adrian, MI" },
+          { name: "Robinson E. Chaffee", spouse: "m. Hannah Owen", dates: "1838–1910", place: "Michigan" },
+          { name: "Burt K. Chaffee", spouse: "m. Myrtle Lawn", dates: "1869–1942", place: "Grand Rapids, MI" },
+          { name: "Donald Lynn Chaffee", spouse: "m. Blanche Christina Mosher", dates: "1908–1990", place: "Grand Rapids, MI" },
+          { name: "Lt. Cmdr. Roger Bruce Chaffee", spouse: "NASA Apollo 1 Astronaut", dates: "1935–1967", place: "Grand Rapids, MI → Cape Canaveral, FL", highlight: true }
+        ]
+      }
+    ];
+
+    function setMainTab(tab) {
+      currentMainTab = tab;
+      const btnCousins = document.getElementById('tab-btn-cousins');
+      const btnGenealogy = document.getElementById('tab-btn-genealogy');
+      const viewCousins = document.getElementById('view-cousins');
+      const viewGenealogy = document.getElementById('view-genealogy');
+
+      if (tab === 'cousins') {
+        btnCousins.className = "py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5 bg-amber-500 text-slate-950 shadow";
+        btnGenealogy.className = "py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5 text-amber-200 hover:text-white";
+        viewCousins.classList.remove('hidden');
+        viewGenealogy.classList.add('hidden');
+      } else {
+        btnGenealogy.className = "py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5 bg-amber-500 text-slate-950 shadow";
+        btnCousins.className = "py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5 text-amber-200 hover:text-white";
+        viewGenealogy.classList.remove('hidden');
+        viewCousins.classList.add('hidden');
+        renderGenealogyTree();
+      }
+    }
+
+    function setViewer(viewerKey) {
+      currentViewer = viewerKey;
+      document.querySelectorAll('.viewer-btn').forEach(btn => {
+        btn.className = "viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center text-slate-300 hover:text-white";
+      });
+      const activeBtn = document.getElementById('btn-viewer-' + viewerKey);
+      if (activeBtn) {
+        activeBtn.className = "viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center bg-amber-500 text-slate-950 shadow";
+      }
+      document.getElementById('viewer-gen-badge').textContent = VIEWER_LABELS[viewerKey].genBadge;
+      document.querySelectorAll('.banner-viewer-name').forEach(el => {
+        el.textContent = VIEWER_LABELS[viewerKey].name;
+      });
+      renderCards();
+      renderGenealogyTree();
+      if (activeRelativeId) {
+        openDetailModal(activeRelativeId);
+      }
+    }
+
+    function setTreeDirection(dir) {
+      currentTreeDirection = dir;
+      document.getElementById('btn-dir-up').className = dir === 'bottom-up'
+        ? "py-2 px-2.5 rounded-lg text-xs font-bold transition bg-slate-900 text-white shadow-xs"
+        : "py-2 px-2.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900";
+      document.getElementById('btn-dir-down').className = dir === 'top-down'
+        ? "py-2 px-2.5 rounded-lg text-xs font-bold transition bg-slate-900 text-white shadow-xs"
+        : "py-2 px-2.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900";
+      renderGenealogyTree();
+    }
+
+    function setGenealogyBranch(branch) {
+      currentGenealogyBranch = branch;
+      document.querySelectorAll('.branch-pill').forEach(btn => {
+        if (btn.dataset.branch === branch) {
+          btn.className = "branch-pill accent-pill-active shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-amber-700/20";
+        } else {
+          btn.className = "branch-pill bg-slate-100 text-slate-700 shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition border border-slate-200";
+        }
+      });
+      renderGenealogyTree();
+    }
+
+    function renderGenealogyTree() {
+      const container = document.getElementById('genealogy-container');
+      if (!container) return;
+
+      // Build extra bottom steps if viewer is 'clint' or 'girls'
+      const prefixSteps = [];
+      if (currentViewer === 'girls') {
+        prefixSteps.push({
+          stepsUp: -2,
+          couple: "Adeline, Caroline & Emmeline",
+          spouse: "The 3 Sisters (Generation 17)",
+          dates: "Present Day",
+          location: "New York",
+          badge: "Generation 17",
+          story: "15-year-old bookworm & goalie Adeline, 12-year-old swimmer Caroline, and 10-year-old defender Emmeline.",
+          cousinLinks: []
+        });
+      }
+      if (currentViewer === 'clint' || currentViewer === 'girls') {
+        prefixSteps.push({
+          stepsUp: -1,
+          couple: "Clint Meyer & Sister Megan",
+          spouse: "Son & Daughter of Paula Hitchcock Meyer",
+          dates: "Generation 16",
+          location: "New York",
+          badge: "Generation 16",
+          story: "Uncle Clint Meyer (Family Archivist & Tractor Instructor) and Mom Megan.",
+          cousinLinks: []
+        });
+      }
+
+      const upperList = UPPER_BRANCHES[currentGenealogyBranch] || UPPER_BRANCHES.all;
+      let fullNodes = [...prefixSteps, ...DIRECT_TRUNK_FROM_PAULA, ...upperList];
+
+      if (currentTreeDirection === 'top-down') {
+        fullNodes = [...fullNodes].reverse();
+      }
+
+      const arrowIcon = currentTreeDirection === 'bottom-up' ? '⬆️ Parents of Above' : '⬇️ Child of Above';
+
+      container.innerHTML = fullNodes.map((node, idx) => {
+        const relTitle = getAncestorTitleForViewer(node.stepsUp);
+        const isStartNode = (currentViewer === 'paula' && node.stepsUp === 0) ||
+                            (currentViewer === 'clint' && node.stepsUp === -1) ||
+                            (currentViewer === 'girls' && node.stepsUp === -2);
+
+        const cardStyle = isStartNode
+          ? "bg-amber-100 border-2 border-amber-500 shadow-md"
+          : (node.isGateway
+              ? "bg-gradient-to-br from-slate-900 to-slate-800 text-white border-2 border-amber-400 shadow-md"
+              : "bg-white border border-slate-200 card-shadow");
+
+        const badgeStyle = node.isGateway
+          ? "bg-amber-400 text-slate-950"
+          : "bg-amber-500/15 text-amber-900 border border-amber-500/30";
+
+        const cousinButtons = (node.cousinLinks || []).map(link => `
+          <button onclick="openDetailModal('${link.id}')" class="mt-1.5 mr-1.5 inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-lg transition ${node.isGateway ? 'bg-amber-400/20 text-amber-200 border border-amber-400/40 hover:bg-amber-400/30' : 'bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100'}">
+            <span>⭐</span>
+            <span>${link.label} →</span>
+          </button>
+        `).join('');
+
+        return `
+          ${idx > 0 ? `
+            <div class="flex items-center justify-center py-0.5">
+              <span class="text-xs font-bold text-slate-500 bg-slate-200/80 px-3 py-0.5 rounded-full border border-slate-300">
+                ${arrowIcon}
+              </span>
+            </div>
+          ` : ''}
+          <div class="${cardStyle} rounded-2xl p-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+              <span class="text-xs font-extrabold uppercase tracking-wide px-2.5 py-0.5 rounded-md ${badgeStyle}">
+                ${relTitle}
+              </span>
+              <span class="text-xs font-semibold ${node.isGateway ? 'text-amber-300' : 'text-slate-500'}">
+                ${node.badge}
+              </span>
+            </div>
+
+            <h3 class="font-serif-title text-base sm:text-lg font-bold ${node.isGateway ? 'text-white' : 'text-slate-900'} leading-snug">
+              ${node.couple}
+            </h3>
+            ${node.spouse ? `<div class="text-xs font-medium ${node.isGateway ? 'text-amber-200' : 'text-slate-600'} mt-0.5">${node.spouse}</div>` : ''}
+
+            <p class="mt-2 text-xs sm:text-sm ${node.isGateway ? 'text-slate-200 bg-slate-950/40 border-slate-700' : 'text-slate-700 bg-slate-50 border-slate-100'} p-2.5 rounded-xl border leading-relaxed">
+              ${node.story}
+            </p>
+
+            ${cousinButtons ? `<div class="mt-2">${cousinButtons}</div>` : ''}
+
+            <div class="mt-2.5 pt-2 border-t ${node.isGateway ? 'border-slate-700 text-slate-300' : 'border-slate-100 text-slate-500'} flex flex-wrap items-center justify-between gap-2 text-xs">
+              <span>📍 ${node.location}</span>
+              <span class="font-semibold">${node.dates}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = "cat-pill accent-pill-active shrink-0 px-3.5 py-2 rounded-full text-xs font-bold transition border border-amber-700/20";
+        } else {
+          btn.className = "cat-pill bg-white text-slate-700 shrink-0 px-3.5 py-2 rounded-full text-xs font-bold transition border border-slate-200";
+        }
+      });
+      renderCards();
+    }
+
+    function renderCards() {
+      const container = document.getElementById('cards-container');
+      const query = (document.getElementById('search-input').value || '').toLowerCase().trim();
+
+      const filtered = FAMOUS_RELATIVES.filter(item => {
+        const matchesCat = currentCategory === 'all' || item.categories.includes(currentCategory);
+        const matchesSearch = !query ||
+          item.name.toLowerCase().includes(query) ||
+          item.title.toLowerCase().includes(query) ||
+          item.commonAncestor.toLowerCase().includes(query) ||
+          item.headlineFact.toLowerCase().includes(query);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl p-8 text-center border border-slate-200">
+            <div class="text-3xl mb-2">🔎</div>
+            <div class="font-bold text-slate-800">No matches found</div>
+            <p class="text-xs text-slate-500 mt-1">Try clearing your search or selecting "All Famous Kin".</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        const relLabel = item.relationByViewer[currentViewer];
+        return `
+          <div onclick="openDetailModal('${item.id}')" class="bg-white rounded-2xl p-4 border border-slate-200/90 card-shadow active:scale-[0.99] transition cursor-pointer hover:border-amber-400">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-start gap-3 min-w-0">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-2xl shrink-0">
+                  ${item.emoji}
+                </div>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-1.5 mb-1">
+                    <span class="text-xs font-bold px-2 py-0.5 rounded-md border ${item.badgeColor}">
+                      ${item.badgeText}
+                    </span>
+                  </div>
+                  <h3 class="font-serif-title text-lg font-bold text-slate-900 leading-snug">
+                    ${item.name}
+                  </h3>
+                  <p class="text-xs text-slate-500 font-medium">${item.title}</p>
+                </div>
+              </div>
+              <div class="shrink-0 text-right">
+                <span class="inline-block bg-amber-500/15 text-amber-900 border border-amber-500/30 font-bold text-xs px-2.5 py-1 rounded-xl">
+                  ${relLabel}
+                </span>
+              </div>
+            </div>
+
+            <p class="mt-3 text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              ${item.headlineFact}
+            </p>
+
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <div class="text-slate-500 truncate pr-2">
+                <strong class="text-slate-700">Shared Ancestor:</strong> ${item.commonAncestor}
+              </div>
+              <span class="text-amber-700 font-bold shrink-0 flex items-center gap-1">
+                See Tree <span>→</span>
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      if (activeRelativeId) {
+        openDetailModal(activeRelativeId);
+      }
+    }
+
+    function openDetailModal(id) {
+      activeRelativeId = id;
+      const item = FAMOUS_RELATIVES.find(r => r.id === id);
+      if (!item) return;
+
+      const viewerInfo = VIEWER_LABELS[currentViewer];
+      const relLabel = item.relationByViewer[currentViewer];
+      const yourFullBranch = [...item.yourBranchStart, ...MODERN_TAIL[currentViewer]];
+
+      document.getElementById('modal-emoji').textContent = item.emoji;
+      document.getElementById('modal-title').textContent = item.name;
+      document.getElementById('modal-subtitle').textContent = `${relLabel} to ${viewerInfo.short}`;
+
+      const maxRows = Math.max(yourFullBranch.length, item.theirBranch.length);
+
+      let ladderHtml = '';
+      if (currentViewMode === 'side-by-side') {
+        let rowsHtml = '';
+        let removedCounter = 0;
+
+        for (let i = 0; i < maxRows; i++) {
+          const left = yourFullBranch[i];
+          const right = item.theirBranch[i];
+          const leftParentName = i === 0 ? item.commonShort : (yourFullBranch[i - 1] ? yourFullBranch[i - 1].name : '');
+          const rightParentName = i === 0 ? item.commonShort : (item.theirBranch[i - 1] ? item.theirBranch[i - 1].name : '');
+
+          if (!left || !right) {
+            removedCounter++;
+          }
+
+          const rowRel = getRowRelationshipLabel(i, !!left, !!right, item.commonShort, removedCounter);
+
+          rowsHtml += `
+            <div class="pt-1">
+              <!-- Relationship Banner Across the Row -->
+              <div class="text-center mb-1.5">
+                <span class="inline-block text-xs font-extrabold tracking-wide px-3 py-0.5 rounded-full border ${rowRel.bg}">
+                  ${rowRel.badge}
+                </span>
+                <div class="text-xs text-slate-500 mt-0.5">${rowRel.desc}</div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 relative">
+                <!-- Left: Your Family Line -->
+                <div class="${left ? (left.highlight ? 'bg-amber-100 border-2 border-amber-500 shadow-xs' : 'bg-white border border-slate-200') : 'bg-slate-100/50 border border-dashed border-slate-200'} rounded-xl p-2.5 flex flex-col justify-between">
+                  ${left ? `
+                    <div>
+                      <div class="text-xs font-semibold text-amber-800 bg-amber-50/90 px-2 py-0.5 rounded mb-1 inline-block">
+                        ↓ Child of ${leftParentName}
+                      </div>
+                      <div class="font-bold text-xs sm:text-sm text-slate-900 leading-tight">${left.name}</div>
+                      ${left.spouse ? `<div class="text-xs text-slate-600 mt-0.5">${left.spouse}</div>` : ''}
+                    </div>
+                    <div class="mt-2 pt-1 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                      <span class="truncate">${left.place}</span>
+                      <span class="shrink-0 ml-1 font-medium">${left.dates}</span>
+                    </div>
+                  ` : `<div class="text-xs text-slate-400 italic text-center my-auto py-3">Line complete above</div>`}
+                </div>
+
+                <!-- Right: Famous Cousin Line -->
+                <div class="${right ? (right.highlight ? 'bg-slate-900 text-white border-2 border-amber-400 shadow-md' : 'bg-white border border-slate-200') : 'bg-slate-100/50 border border-dashed border-slate-200'} rounded-xl p-2.5 flex flex-col justify-between">
+                  ${right ? `
+                    <div>
+                      <div class="text-xs font-semibold ${right.highlight ? 'bg-amber-400 text-slate-950' : 'text-blue-800 bg-blue-50'} px-2 py-0.5 rounded mb-1 inline-block">
+                        ↓ Child of ${rightParentName}
+                      </div>
+                      <div class="font-bold text-xs sm:text-sm ${right.highlight ? 'text-white' : 'text-slate-900'} leading-tight">${right.name}</div>
+                      ${right.spouse ? `<div class="text-xs ${right.highlight ? 'text-amber-300' : 'text-slate-600'} mt-0.5">${right.spouse}</div>` : ''}
+                    </div>
+                    <div class="mt-2 pt-1 border-t ${right.highlight ? 'border-slate-700 text-slate-300' : 'border-slate-100 text-slate-400'} flex items-center justify-between text-xs">
+                      <span class="truncate">${right.place}</span>
+                      <span class="shrink-0 ml-1 font-medium">${right.dates}</span>
+                    </div>
+                  ` : `
+                    <div class="text-xs text-slate-400 text-center my-auto py-3 px-1">
+                      <div class="font-semibold text-slate-500">${item.name}</div>
+                      <div>is ${removedCounter} gen${removedCounter > 1 ? 's' : ''} earlier ("${removedCounter}x Removed")</div>
+                    </div>
+                  `}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        ladderHtml = `
+          <div class="grid grid-cols-2 gap-2 sticky top-0 z-10 bg-[#faf7f2] py-1.5">
+            <div class="bg-amber-800 text-white rounded-xl px-3 py-2 text-center font-bold text-xs shadow-xs">
+              🌳 ${viewerInfo.short}'s Branch
+            </div>
+            <div class="bg-slate-900 text-white rounded-xl px-3 py-2 text-center font-bold text-xs shadow-xs">
+              ⭐ ${item.name}'s Branch
+            </div>
+          </div>
+          <div class="space-y-3 mt-1">
+            ${rowsHtml}
+          </div>
+        `;
+      } else {
+        ladderHtml = `
+          <div class="space-y-4">
+            <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-3">
+              <h4 class="font-bold text-sm text-amber-950 mb-2 flex items-center gap-1.5">
+                <span>🌳</span> Your Family Branch (Down to ${viewerInfo.name})
+              </h4>
+              <div class="space-y-2">
+                ${yourFullBranch.map((step, idx) => {
+                  const pName = idx === 0 ? item.commonShort : yourFullBranch[idx - 1].name;
+                  return `
+                  <div class="${step.highlight ? 'bg-amber-100 border-2 border-amber-500' : 'bg-white border border-slate-200'} rounded-xl p-3">
+                    <div class="flex justify-between text-xs text-slate-500 mb-0.5">
+                      <span class="font-bold text-amber-800">Step ${idx + 1} • ↓ Child of ${pName}</span>
+                      <span>${step.dates}</span>
+                    </div>
+                    <div class="font-bold text-sm text-slate-900">${step.name}</div>
+                    ${step.spouse ? `<div class="text-xs text-slate-600">${step.spouse}</div>` : ''}
+                    <div class="text-xs text-slate-400 mt-1">📍 ${step.place}</div>
+                  </div>
+                `}).join('')}
+              </div>
+            </div>
+
+            <div class="bg-slate-100 border border-slate-300 rounded-2xl p-3">
+              <h4 class="font-bold text-sm text-slate-900 mb-2 flex items-center gap-1.5">
+                <span>⭐</span> ${item.name}'s Branch
+              </h4>
+              <div class="space-y-2">
+                ${item.theirBranch.map((step, idx) => {
+                  const pName = idx === 0 ? item.commonShort : item.theirBranch[idx - 1].name;
+                  return `
+                  <div class="${step.highlight ? 'bg-slate-900 text-white border-2 border-amber-400' : 'bg-white border border-slate-200'} rounded-xl p-3">
+                    <div class="flex justify-between text-xs ${step.highlight ? 'text-amber-300' : 'text-slate-500'} mb-0.5">
+                      <span class="font-bold">Step ${idx + 1} • ↓ Child of ${pName}</span>
+                      <span>${step.dates}</span>
+                    </div>
+                    <div class="font-bold text-sm ${step.highlight ? 'text-white' : 'text-slate-900'}">${step.name}</div>
+                    ${step.spouse ? `<div class="text-xs ${step.highlight ? 'text-amber-200' : 'text-slate-600'}">${step.spouse}</div>` : ''}
+                    <div class="text-xs ${step.highlight ? 'text-slate-300' : 'text-slate-400'} mt-1">📍 ${step.place}</div>
+                  </div>
+                `}).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('modal-body').innerHTML = `
+        <!-- Historical Story Box -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 card-shadow">
+          <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">How You Are Connected</div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${item.story}</p>
+        </div>
+
+        <!-- View Mode Toggle -->
+        <div class="flex items-center justify-between bg-slate-200/80 p-1 rounded-xl">
+          <button onclick="setViewMode('side-by-side')" class="flex-1 py-1.5 rounded-lg text-xs font-bold transition ${currentViewMode === 'side-by-side' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600'}">
+            ⇄ Side-by-Side Cousin Ladder
+          </button>
+          <button onclick="setViewMode('timeline')" class="flex-1 py-1.5 rounded-lg text-xs font-bold transition ${currentViewMode === 'timeline' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600'}">
+            ☰ Large Stacked List
+          </button>
+        </div>
+
+        <!-- Shared Common Ancestor Apex Card -->
+        <div class="bg-gradient-to-r from-amber-900 to-slate-900 text-white rounded-2xl p-4 text-center shadow-md border-2 border-amber-400">
+          <div class="text-xs font-bold uppercase tracking-widest text-amber-300 mb-1">⚓ SHARED COMMON ANCESTOR (ROOT OF BOTH LINES)</div>
+          <div class="font-serif-title text-base sm:text-lg font-bold">${item.commonAncestor}</div>
+          ${item.commonParentNote ? `<div class="text-xs text-amber-200/90 mt-0.5">${item.commonParentNote}</div>` : ''}
+          <div class="text-xs text-slate-300 mt-1">📍 ${item.commonLocation}</div>
+          <div class="mt-2.5 pt-2 border-t border-white/15 flex items-center justify-around text-xs font-bold text-amber-300">
+            <span>↙ Your Ancestor (Child #1)</span>
+            <span>Their Ancestor (Child #2) ↘</span>
+          </div>
+        </div>
+
+        <!-- Lineage Comparison Ladder -->
+        ${ladderHtml}
+      `;
+
+      document.getElementById('detail-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetailModal() {
+      activeRelativeId = null;
+      document.getElementById('detail-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function openHubModal() {
+      document.getElementById('hub-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeHubModal() {
+      document.getElementById('hub-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Initial render
+    renderCards();
+    renderGenealogyTree();
+  </script>
+</body>
+</html>
