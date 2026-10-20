@@ -46,7 +46,7 @@
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-500/15 border border-amber-400/30 px-2.5 py-0.5 rounded-full mb-1">
             500 Years • Verified Genealogy
           </span>
-          <h1 class="font-serif-title text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+          <h1 id="header-primary-name" class="font-serif-title text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
             Paula Hitchcock Meyer
           </h1>
           <p class="text-xs sm:text-sm text-amber-300 font-medium mt-0.5">
@@ -85,23 +85,14 @@
         <div class="flex items-start gap-3">
           <div class="text-2xl shrink-0 mt-0.5">📜</div>
           <div class="text-xs sm:text-sm text-amber-950 leading-relaxed">
-            <strong>Tap any cousin below</strong> to see the step-by-step family tree starting at your <strong>Shared Common Ancestor</strong>, branching into <strong>Step 1 (Brother &amp; Sister)</strong>, <strong>Step 2 (1st Cousins)</strong>, and tracing all the way down to <strong><span class="banner-viewer-name">Paula Hitchcock Meyer</span></strong> and her brothers &amp; sisters!
+            <strong>Tap any cousin below</strong> to see the step-by-step family tree starting at your <strong>Shared Common Ancestor</strong>, branching into <strong>Step 1 (Brother &amp; Sister)</strong>, <strong>Step 2 (1st Cousins)</strong>, and tracing all the way down to <strong><span class="banner-viewer-name">Paula Hitchcock Meyer</span></strong>!
           </div>
         </div>
-        <div class="pt-2 border-t border-amber-200/80 flex flex-wrap items-center gap-1.5 text-xs">
-          <span class="font-bold text-amber-900 mr-1">👨‍👩‍👧‍👦 Hitchcock Siblings (Children of Paul Hitchcock):</span>
-          <span class="px-2 py-0.5 rounded-md bg-amber-600 text-white font-bold">⭐ Paula</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Debbie</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Danny</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Pamla</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Barbara</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Brendan</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Lonnie</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Lanny</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Karen</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Billy</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">Cindy</span>
-          <span class="px-2 py-0.5 rounded-md bg-white border border-amber-300 text-slate-800 font-semibold">James</span>
+        <div class="pt-2 border-t border-amber-200/80">
+          <div class="text-xs font-bold text-amber-900 mb-1.5">
+            👨‍👩‍👧‍👦 Tap Any Hitchcock Sibling (Children of Paul Hitchcock) to Make Them Primary:
+          </div>
+          <div id="top-siblings-bar" class="flex flex-wrap items-center gap-1.5 text-xs"></div>
         </div>
       </div>
 
@@ -289,6 +280,17 @@
       "Paula", "Debbie", "Danny", "Pamla", "Barbara", "Brendan",
       "Lonnie", "Lanny", "Karen", "Billy", "Cindy", "James"
     ];
+
+    let currentSibling = "Paula";
+
+    function getSiblingFullName(sib) {
+      return sib === "Paula" ? "Paula Hitchcock Meyer" : `${sib} Hitchcock`;
+    }
+
+    function getOtherSiblingsText(sib) {
+      const others = HITCHCOCK_SIBLINGS.filter(s => s !== sib);
+      return "Siblings: " + others.slice(0, -1).join(", ") + " & " + others[others.length - 1];
+    }
 
     const MODERN_TAIL = {
       paula: [
@@ -1529,13 +1531,13 @@
             ${node.siblingsList ? `
               <div class="mt-2.5 bg-white/90 border border-amber-300 rounded-xl p-2.5">
                 <div class="text-xs font-bold uppercase tracking-wider text-amber-900 mb-1.5">
-                  👨‍👩‍👧‍👦 Generation 15 • Brothers &amp; Sisters (${node.siblingsList.length}):
+                  👨‍👩‍👧‍👦 Generation 15 • Tap Any Sibling to Make Primary (${node.siblingsList.length}):
                 </div>
                 <div class="flex flex-wrap gap-1.5">
                   ${node.siblingsList.map(sib => `
-                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${sib === 'Paula' ? 'bg-amber-600 text-white shadow-xs' : 'bg-amber-50 text-slate-800 border border-amber-200'}">
-                      ${sib === 'Paula' ? '⭐ Paula' : sib}
-                    </span>
+                    <button onclick="setPrimarySibling('${sib}')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition active:scale-95 cursor-pointer ${sib === currentSibling ? 'bg-amber-600 text-white shadow-xs' : 'bg-amber-50 hover:bg-amber-100 text-slate-800 border border-amber-200'}">
+                      ${sib === currentSibling ? '⭐ ' + sib : sib}
+                    </button>
                   `).join('')}
                 </div>
               </div>
@@ -1845,9 +1847,55 @@
       document.body.style.overflow = '';
     }
 
+    function renderTopSiblingsBar() {
+      const bar = document.getElementById('top-siblings-bar');
+      if (!bar) return;
+      bar.innerHTML = HITCHCOCK_SIBLINGS.map(sib => `
+        <button onclick="setPrimarySibling('${sib}')" class="px-2.5 py-1 rounded-lg font-bold transition active:scale-95 cursor-pointer ${sib === currentSibling ? 'bg-amber-600 text-white shadow-xs' : 'bg-white hover:bg-amber-100 border border-amber-300 text-slate-800'}">
+          ${sib === currentSibling ? '⭐ ' + sib : sib}
+        </button>
+      `).join('');
+    }
+
+    function setPrimarySibling(sibName) {
+      currentSibling = sibName;
+      const fullName = getSiblingFullName(sibName);
+      const othersText = getOtherSiblingsText(sibName);
+
+      // Update VIEWER_LABELS and MODERN_TAIL
+      VIEWER_LABELS.paula.name = fullName;
+      VIEWER_LABELS.paula.short = sibName;
+      MODERN_TAIL.paula[0].name = fullName;
+      MODERN_TAIL.paula[0].spouse = othersText;
+
+      // Update DIRECT_TRUNK_FROM_PAULA step 0
+      DIRECT_TRUNK_FROM_PAULA[0].couple = `${fullName} & the Hitchcock Siblings`;
+      DIRECT_TRUNK_FROM_PAULA[0].spouse = othersText;
+      DIRECT_TRUNK_FROM_PAULA[0].story = `Child of Paul Hitchcock; ${sibName} and all 11 brothers and sisters share these exact same generational cousin connections and carry the combined bloodlines of the 1629 Lynn Ingalls pioneers, the 1620 Mayflower Billingtons, and New England's presidential families.`;
+
+      // Update Header & Banners
+      const headerEl = document.getElementById('header-primary-name');
+      if (headerEl) headerEl.textContent = fullName;
+      document.querySelectorAll('.banner-viewer-name').forEach(el => {
+        el.textContent = fullName;
+      });
+
+      // Update Direction Buttons
+      const btnUp = document.getElementById('btn-dir-up');
+      const btnDown = document.getElementById('btn-dir-down');
+      if (btnUp) btnUp.textContent = `⬆️ Start at ${sibName} → Climb to 1520`;
+      if (btnDown) btnDown.textContent = `⬇️ Start at 1520 → Down to ${sibName}`;
+
+      renderTopSiblingsBar();
+      renderCards();
+      renderGenealogyTree();
+      if (activeRelativeId) {
+        openDetailModal(activeRelativeId);
+      }
+    }
+
     // Initial render
-    renderCards();
-    renderGenealogyTree();
+    setPrimarySibling('Paula');
   </script>
 </body>
 </html>
