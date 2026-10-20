@@ -47,9 +47,9 @@
             500 Years • Verified Genealogy
           </span>
           <h1 class="font-serif-title text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
-            Family Heritage Explorer
+            Paula Hitchcock Meyer
           </h1>
-          <p class="text-xs sm:text-sm text-slate-300 mt-0.5">
+          <p class="text-xs sm:text-sm text-amber-300 font-medium mt-0.5">
             Hitchcock • Meyer • Dye • Ingalls • Carpenter • Billington
           </p>
         </div>
@@ -59,7 +59,7 @@
         </button>
       </div>
 
-      <!-- Primary Mode Switcher: Famous Cousins vs. Mom's Known Genealogy -->
+      <!-- Primary Mode Switcher: Famous Cousins vs. Known Genealogy -->
       <div class="mt-3 grid grid-cols-2 gap-1.5 bg-slate-950/80 p-1.5 rounded-2xl border border-amber-500/30">
         <button onclick="setMainTab('cousins')" id="tab-btn-cousins" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5 bg-amber-500 text-slate-950 shadow">
           <span>⭐</span>
@@ -69,25 +69,6 @@
           <span>🌳</span>
           <span>Known Genealogy</span>
         </button>
-      </div>
-
-      <!-- "Viewing As" Perspective Switcher -->
-      <div class="mt-2.5 bg-slate-800/90 p-1.5 rounded-xl border border-slate-700">
-        <div class="text-xs text-amber-300 font-semibold px-2 mb-1 flex items-center justify-between">
-          <span>👑 Viewing Relationships For:</span>
-          <span id="viewer-gen-badge" class="text-slate-300 font-normal">Gen 15 from 1520 England</span>
-        </div>
-        <div class="grid grid-cols-3 gap-1">
-          <button onclick="setViewer('paula')" id="btn-viewer-paula" class="viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center bg-amber-500 text-slate-950 shadow">
-            Paula (Mom)
-          </button>
-          <button onclick="setViewer('clint')" id="btn-viewer-clint" class="viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center text-slate-300 hover:text-white">
-            Clint &amp; Megan
-          </button>
-          <button onclick="setViewer('girls')" id="btn-viewer-girls" class="viewer-btn py-1.5 px-2 rounded-lg text-xs font-bold transition text-center text-slate-300 hover:text-white">
-            The 3 Girls
-          </button>
-        </div>
       </div>
     </div>
   </header>
@@ -163,13 +144,13 @@
           </div>
         </div>
 
-        <!-- Direction Toggle: From Mom Up to Top vs. From 1520 Down to Mom -->
+        <!-- Direction Toggle: From Paula Up to Top vs. From 1520 Down to Paula -->
         <div class="bg-slate-100 p-1 rounded-xl grid grid-cols-2 gap-1">
           <button onclick="setTreeDirection('bottom-up')" id="btn-dir-up" class="py-2 px-2.5 rounded-lg text-xs font-bold transition bg-slate-900 text-white shadow-xs">
-            ⬆️ Start at Mom → Climb to 1520
+            ⬆️ Start at Paula → Climb to 1520
           </button>
           <button onclick="setTreeDirection('top-down')" id="btn-dir-down" class="py-2 px-2.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
-            ⬇️ Start at 1520 → Down to Today
+            ⬇️ Start at 1520 → Down to Paula
           </button>
         </div>
 
@@ -321,9 +302,7 @@
     let activeRelativeId = null;
 
     const VIEWER_LABELS = {
-      paula: { name: "Paula Hitchcock Meyer", short: "Paula (Mom)", genBadge: "Gen 15 (from 1520 Tudor England)", offset: 0 },
-      clint: { name: "Clint Meyer & Megan", short: "Clint & Megan", genBadge: "Gen 16 (from 1520 Tudor England)", offset: 1 },
-      girls: { name: "Adeline, Caroline & Emmeline", short: "The 3 Girls", genBadge: "Gen 17 (from 1520 Tudor England)", offset: 2 }
+      paula: { name: "Paula Hitchcock Meyer", short: "Paula", genBadge: "Gen 15 (from 1520 Tudor England)", offset: 0 }
     };
 
     function ordinal(n) {
