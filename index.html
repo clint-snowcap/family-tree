@@ -281,14 +281,29 @@
       "Lonnie", "Lanny", "Karen", "Billy", "Cindy", "James"
     ];
 
+    const SIBLING_FULL_NAMES = {
+      Paula: "Paula Hitchcock Meyer",
+      Debbie: "Debbie Hitchcock",
+      Danny: "Danny Hitchcock",
+      Pamla: "Pamla Raye Hitchcock",
+      Barbara: "Barbara Roberts Hitchcock",
+      Brendan: "Brendan Hitchcock",
+      Lonnie: "Lonnie Hitchcock",
+      Lanny: "Lanny Hitchcock",
+      Karen: "Karen Reynolds Hitchcock",
+      Billy: "Billy Joe Smith",
+      Cindy: "Cindy Hitchcock",
+      James: "James Hitchcock"
+    };
+
     let currentSibling = "Paula";
 
     function getSiblingFullName(sib) {
-      return sib === "Paula" ? "Paula Hitchcock Meyer" : `${sib} Hitchcock`;
+      return SIBLING_FULL_NAMES[sib] || `${sib} Hitchcock`;
     }
 
     function getOtherSiblingsText(sib) {
-      const others = HITCHCOCK_SIBLINGS.filter(s => s !== sib);
+      const others = HITCHCOCK_SIBLINGS.filter(s => s !== sib).map(s => SIBLING_FULL_NAMES[s]);
       return "Siblings: " + others.slice(0, -1).join(", ") + " & " + others[others.length - 1];
     }
 
@@ -373,7 +388,7 @@
       {
         stepsUp: 1,
         couple: "Paul Hitchcock",
-        spouse: "Father of Paula, Debbie, Danny, Pamla, Barbara, Brendan, Lonnie, Lanny, Karen, Billy, Cindy & James",
+        spouse: "Father of Paula Hitchcock Meyer, Debbie Hitchcock, Danny Hitchcock, Pamla Raye Hitchcock, Barbara Roberts Hitchcock, Brendan Hitchcock, Lonnie Hitchcock, Lanny Hitchcock, Karen Reynolds Hitchcock, Billy Joe Smith, Cindy Hitchcock & James Hitchcock",
         dates: "Generation 14 • 20th Century",
         location: "Olean, Cattaraugus County, NY",
         badge: "Hitchcock Line",
@@ -1536,7 +1551,7 @@
                 <div class="flex flex-wrap gap-1.5">
                   ${node.siblingsList.map(sib => `
                     <button onclick="setPrimarySibling('${sib}')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition active:scale-95 cursor-pointer ${sib === currentSibling ? 'bg-amber-600 text-white shadow-xs' : 'bg-amber-50 hover:bg-amber-100 text-slate-800 border border-amber-200'}">
-                      ${sib === currentSibling ? '⭐ ' + sib : sib}
+                      ${sib === currentSibling ? '⭐ ' + getSiblingFullName(sib) : getSiblingFullName(sib)}
                     </button>
                   `).join('')}
                 </div>
@@ -1852,7 +1867,7 @@
       if (!bar) return;
       bar.innerHTML = HITCHCOCK_SIBLINGS.map(sib => `
         <button onclick="setPrimarySibling('${sib}')" class="px-2.5 py-1 rounded-lg font-bold transition active:scale-95 cursor-pointer ${sib === currentSibling ? 'bg-amber-600 text-white shadow-xs' : 'bg-white hover:bg-amber-100 border border-amber-300 text-slate-800'}">
-          ${sib === currentSibling ? '⭐ ' + sib : sib}
+          ${sib === currentSibling ? '⭐ ' + getSiblingFullName(sib) : getSiblingFullName(sib)}
         </button>
       `).join('');
     }
